@@ -1,0 +1,63 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border: 0;
+  color: var(--space-cadet);
+  /* Font Style */
+  --brand-type: "Glass Antiqua";
+  /* Color Pallette */
+  --celadon: #baf3daff;
+  --apricot: #ffcab1ff;
+  --slate-gray: #6f8695ff;
+  --space-cadet: #2a2e45ff;
+  --redwood: #9f4a54ff;
+  --photo-blue: #acdde7;
+  --flax: #e9d985;
+  --lavender: #e5eafa;
+  --bg-col: #f3eff5;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Utility Classes */
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.align {
+  align-items: center;
+}
+
+.justify {
+  justify-content: center;
+}
+
+.container {
+  width: 85%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+button.button {
+  padding: 0.45rem 0.65rem;
+  margin: 0rem 0.5rem;
+}/*# sourceMappingURL=index.css.map */

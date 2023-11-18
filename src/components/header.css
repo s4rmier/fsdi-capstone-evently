@@ -1,0 +1,22 @@
+header {
+  padding: 0.85rem 0rem;
+}
+header div.container {
+  justify-content: space-between;
+}
+header div.container div.right-col div.brand-container img.brand-img {
+  width: 25px;
+}
+header div.container div.right-col div.brand-container h2.brand-name {
+  font-size: 1.25rem;
+  font-weight: bolder;
+  margin: 0rem 0.75rem;
+  font-family: var(--brand-type);
+}
+header div.container nav {
+  margin-left: 30%;
+}
+header div.container nav ul li {
+  margin: 0rem 1rem;
+  font-size: 1rem;
+}/*# sourceMappingURL=header.css.map */
