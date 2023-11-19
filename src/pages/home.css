@@ -1,0 +1,76 @@
+main#home {
+  background-image: url(/public/hero-bg.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+@media screen and (min-width: 720px) {
+  div.container section.hero-section {
+    gap: 2rem;
+  }
+  div.container section.hero-section div.headline h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+  }
+  div.container section.hero-section div.headline h2 {
+    padding-bottom: 0.5rem;
+  }
+  div.container section.hero-section div.headline div.cta {
+    margin: 1rem 0rem;
+    gap: 1rem;
+  }
+  div.container section.hero-section div.headline div.cta button {
+    margin: 1rem 0rem;
+    font-size: 1rem;
+  }
+  div.container section.hero-section img {
+    width: 60%;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+  div.container section.features {
+    margin: 2rem 0rem;
+  }
+  div.container section.features h2.main-headline {
+    text-align: center;
+  }
+  div.container section.features h3.sub-headline {
+    text-align: center;
+  }
+  div.container section.features div.card-container {
+    margin: 2rem 0rem;
+    justify-content: space-around;
+  }
+  div.container section.features div.card-container div.feature-card {
+    width: 27%;
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+  div.container section.features div.card-container div.feature-card i {
+    font-size: 2rem;
+  }
+  div.container section.features div.card-container div.feature-card button {
+    align-self: flex-end;
+    margin-right: 2rem;
+  }
+  div.container section.showcase {
+    margin: 4rem 0rem;
+  }
+  div.container section.showcase div.container figure img {
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+  div.container section.showcase div.container figure figcaption {
+    margin-left: 4rem;
+    gap: 2rem;
+  }
+  div.container section.showcase div.container figure figcaption div.benefit-card h3 i {
+    margin-right: 1rem;
+  }
+  div.container section.showcase div.container figure figcaption div.benefit-card p {
+    padding-left: 2rem;
+    margin-left: 0.65rem;
+    border-left: 2px solid var(--slate-gray);
+  }
+}/*# sourceMappingURL=home.css.map */

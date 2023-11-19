@@ -1,9 +1,10 @@
-import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import "./header.css";
 import NavLink from "./NavLink";
-import { Link } from "react-router-dom";
 
 function Header() {
+  const location = useLocation();
+
   return (
     <header>
       <div className="container flex-row align">
@@ -16,19 +17,35 @@ function Header() {
           </Link>
           <nav>
             <ul className="flex-row">
-              <NavLink url={""} name={"Home"} />
-              <li>Blog</li>
-              <NavLink url={"events"} name={"Events"} />
-              <li>Contact</li>
+              <NavLink
+                isActiveNav={location.pathname === "/"}
+                name={"Home"}
+                url={""}
+              />
+              <NavLink
+                isActiveNav={location.pathname === "/blog"}
+                name={"Blog"}
+                url={"blog"}
+              />
+              <NavLink
+                isActiveNav={location.pathname === "/events"}
+                name={"Events"}
+                url={"events"}
+              />
+              <NavLink
+                isActiveNav={location.pathname === "/contact"}
+                name={"Contact"}
+                url={""}
+              />
             </ul>
           </nav>
         </div>
         <div className="left-col">
           <div className="nav-actions flex-row align">
-            <button id="nav-get-started" className="button">
-              Get Started
+            <button id="nav-get-started" className="button btn-spec">
+              Get Started<i className="fa-solid fa-arrow-right-long"></i>
             </button>
-            <button id="nav-sign-in" className="button ">
+            <button id="nav-sign-in" className="button">
               Sign In
             </button>
           </div>

@@ -1,7 +1,11 @@
 import React from "react";
 
 function Events() {
-  return <div>Events</div>;
+  return (
+    <main>
+      <div className="container"></div>
+    </main>
+  );
 }
 
 export default Events;

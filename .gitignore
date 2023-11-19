@@ -25,3 +25,5 @@ dist-ssr
 
 *.scss
 *.css.map
+
+/assets

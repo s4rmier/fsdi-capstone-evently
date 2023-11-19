@@ -4,8 +4,13 @@
   box-sizing: border-box;
   border: 0;
   color: var(--space-cadet);
+  scroll-behavior: smooth;
   /* Font Style */
   --brand-type: "Glass Antiqua";
+  --link-type: "Krub", sans-serif;
+  --body-type: "Lora", serif;
+  --sub-heading-type: "Pathway Extreme", sans-serif;
+  --heading-type: "Squada One", sans-serif;
   /* Color Pallette */
   --celadon: #baf3daff;
   --apricot: #ffcab1ff;
@@ -15,7 +20,8 @@
   --photo-blue: #acdde7;
   --flax: #e9d985;
   --lavender: #e5eafa;
-  --bg-col: #f3eff5;
+  --bg-col: #f3eff5c7;
+  --accent-col: #db7f67;
 }
 
 ul,
@@ -26,10 +32,47 @@ ol {
 a {
   text-decoration: none;
   color: inherit;
+  font-family: var(--link-type);
+  font-weight: 500;
+  font-size: 1rem;
 }
 
 img {
   max-width: 100%;
+}
+
+h1 {
+  font-family: var(--heading-type);
+}
+
+.main-headline {
+  font-family: var(--heading-type);
+  font-size: 3rem;
+}
+
+.sub-headline {
+  font-family: var(--sub-heading-type);
+  font-weight: 300;
+  font-size: 1.25rem;
+}
+
+h2 {
+  font-family: var(--sub-heading-type);
+  font-weight: 300;
+}
+
+h3 {
+  font-family: var(--link-type);
+  font-size: 1.25rem;
+}
+
+p {
+  font-family: var(--link-type);
+}
+
+main {
+  padding: 2rem 0rem;
+  min-height: 75svh;
 }
 
 /* Utility Classes */
@@ -58,6 +101,28 @@ img {
 }
 
 button.button {
-  padding: 0.45rem 0.65rem;
+  padding: 0.4rem 0.75rem;
   margin: 0rem 0.5rem;
+  border-radius: 10px;
+  font-family: var(--link-type);
+  background: var(--bg-col);
+  border: 1px solid var(--slate-gray);
+  font-size: 0.85rem;
+  font-weight: 500;
+  width: -moz-min-content;
+  width: min-content;
+  text-wrap: nowrap;
+  cursor: pointer;
+}
+button.button i {
+  margin-left: 0.5rem;
+}
+
+button.btn-spec {
+  background-image: linear-gradient(90deg, hsl(154, 70%, 84%) 0%, hsl(159, 68%, 83%) 20%, hsl(163, 66%, 82%) 29%, hsl(168, 63%, 81%) 36%, hsl(172, 61%, 80%) 43%, hsl(175, 58%, 80%) 50%, hsl(179, 55%, 79%) 57%, hsl(182, 54%, 79%) 64%, hsl(185, 55%, 79%) 71%, hsl(188, 56%, 79%) 80%, hsl(190, 55%, 79%) 100%);
+}
+
+.active-nav {
+  border-bottom: 2.5px solid var(--redwood);
+  font-weight: 600;
 }/*# sourceMappingURL=index.css.map */

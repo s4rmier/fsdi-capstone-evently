@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function NavLink({ url, name }) {
+function NavLink({ url, name, isActiveNav }) {
   return (
     <Link to={`/${url}`}>
-      <li>{name}</li>
+      <li className={isActiveNav ? "active-nav" : ""}>{name}</li>
     </Link>
   );
 }
