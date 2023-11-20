@@ -95,14 +95,13 @@ main {
 }
 
 .container {
-  width: 85%;
+  width: 90%;
   max-width: 1440px;
   margin: 0 auto;
 }
 
 button.button {
   padding: 0.4rem 0.75rem;
-  margin: 0rem 0.5rem;
   border-radius: 10px;
   font-family: var(--link-type);
   background: var(--bg-col);

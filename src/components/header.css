@@ -26,4 +26,7 @@ header div.container nav ul li {
   margin: 0rem 1rem;
   padding-bottom: 0.25rem;
   transition: all 200ms ease-in-out;
+}
+header div.container div.left-col div.nav-actions {
+  gap: 1rem;
 }/*# sourceMappingURL=header.css.map */
