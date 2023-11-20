@@ -37,6 +37,11 @@ a {
   font-size: 1rem;
 }
 
+li {
+  font-size: 0.85rem;
+  font-family: var(--link-type);
+}
+
 img {
   max-width: 100%;
 }
@@ -73,6 +78,10 @@ p {
 main {
   padding: 2rem 0rem;
   min-height: 75svh;
+}
+
+small {
+  font-size: 0.65rem;
 }
 
 /* Utility Classes */
