@@ -6,27 +6,56 @@ header {
   -webkit-backdrop-filter: blur(10px);
           backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--slate-gray);
+  z-index: 99;
 }
-header div.container {
-  justify-content: space-between;
+
+@media screen and (min-width: 960px) {
+  div.container {
+    justify-content: space-between;
+  }
+  div.container div.right-col div.brand-container img.brand-img {
+    width: 30px;
+  }
+  div.container div.right-col div.brand-container h2.brand-name {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    margin: 0rem 0.75rem;
+    font-family: var(--brand-type);
+  }
+  div.container nav {
+    margin-left: 30%;
+  }
+  div.container nav ul li {
+    margin: 0rem 1rem;
+    padding-bottom: 0.25rem;
+    transition: all 200ms ease-in-out;
+  }
+  div.container div.left-col div.nav-actions {
+    gap: 1rem;
+  }
 }
-header div.container div.right-col div.brand-container img.brand-img {
-  width: 30px;
-}
-header div.container div.right-col div.brand-container h2.brand-name {
-  font-size: 1.5rem;
-  font-weight: bolder;
-  margin: 0rem 0.75rem;
-  font-family: var(--brand-type);
-}
-header div.container nav {
-  margin-left: 30%;
-}
-header div.container nav ul li {
-  margin: 0rem 1rem;
-  padding-bottom: 0.25rem;
-  transition: all 200ms ease-in-out;
-}
-header div.container div.left-col div.nav-actions {
-  gap: 1rem;
+@media screen and (max-width: 959px) {
+  div.container {
+    justify-content: space-between;
+  }
+  div.container div.right-col {
+    gap: 1rem;
+  }
+  div.container div.right-col div.brand-container img.brand-img {
+    width: 30px;
+  }
+  div.container div.right-col div.brand-container h2.brand-name {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    margin: 0rem 0.75rem;
+    font-family: var(--brand-type);
+  }
+  div.container div.right-col nav ul li {
+    margin: 0rem 1rem;
+    padding-bottom: 0.25rem;
+    transition: all 200ms ease-in-out;
+  }
+  div.container div.left-col div.nav-actions {
+    gap: 1rem;
+  }
 }/*# sourceMappingURL=header.css.map */

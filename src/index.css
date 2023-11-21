@@ -84,6 +84,12 @@ small {
   font-size: 0.65rem;
 }
 
+img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  max-width: 100%;
+}
+
 /* Utility Classes */
 .flex-col {
   display: flex;
@@ -133,4 +139,10 @@ button.btn-spec {
 .active-nav {
   border-bottom: 2.5px solid var(--redwood);
   font-weight: 600;
+}
+
+@media screen and (max-width: 959px) {
+  html {
+    font-size: 14px;
+  }
 }/*# sourceMappingURL=index.css.map */

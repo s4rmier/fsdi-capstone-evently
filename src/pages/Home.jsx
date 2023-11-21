@@ -4,8 +4,8 @@ import "./home.css";
 function Home() {
   return (
     <main id="home">
-      <div className="home-section container flex-col">
-        <section className="hero-section flex-row align justify">
+      <div className="home-section flex-col">
+        <section className="hero-section container flex-row align justify">
           <div className="headline flex-col">
             <h1 className="hero-headline main-headline">
               Evently: Your one-stop events management platform
@@ -25,15 +25,17 @@ function Home() {
           <img src="/hero-img.png" />
         </section>
 
-        <section className="features flex-col justify">
-          <h2 className="main-headline">
-            Create and manage your events with ease
-          </h2>
-          <h3 className="sub-headline">
-            Our events management web app allows you to effortlessly create and
-            manage your own events.
-          </h3>
-          <div className="card-container flex-row ">
+        <section className="features container flex-col justify">
+          <div>
+            <h2 className="main-headline">
+              Create and manage your events with ease
+            </h2>
+            <h3 className="sub-headline">
+              Our events management web app allows you to effortlessly create
+              and manage your own events.
+            </h3>
+          </div>
+          <div className="card-container flex-row">
             <div className="feature-card flex-col">
               <i className="fa-solid fa-cube"></i>
               <h3>
@@ -81,37 +83,39 @@ function Home() {
                   curated for your most memorable events.
                 </h3>
 
-                <div className="benefit-card flex-col">
-                  <h3>
-                    {" "}
-                    <i className="fa-solid fa-cube"></i> Effortless Tracking
-                  </h3>
-                  <p>
-                    Digital invites simplify RSVPs, eliminating manual tracking
-                    for precise guest lists and planning efficiency.
-                  </p>
-                </div>
-                <div className="benefit-card flex-col">
-                  <h3>
-                    {" "}
-                    <i className="fa-solid fa-cube"></i> Customizable &
-                    Eco-Friendly
-                  </h3>
-                  <p>
-                    Digital invites allow personalized, interactive designs
-                    while reducing paper waste and costs associated with
-                    traditional invitations.
-                  </p>
-                </div>
-                <div className="benefit-card flex-col">
-                  <h3>
-                    {" "}
-                    <i className="fa-solid fa-cube"></i> Real-Time Updates
-                  </h3>
-                  <p>
-                    Instantly send event updates and reminders, ensuring guests
-                    stay informed without delay or missed details.
-                  </p>
+                <div>
+                  <div className="benefit-card flex-col">
+                    <h3>
+                      {" "}
+                      <i className="fa-solid fa-cube"></i> Effortless Tracking
+                    </h3>
+                    <p>
+                      Digital invites simplify RSVPs, eliminating manual
+                      tracking for precise guest lists and planning efficiency.
+                    </p>
+                  </div>
+                  <div className="benefit-card flex-col">
+                    <h3>
+                      {" "}
+                      <i className="fa-solid fa-cube"></i> Customizable &
+                      Eco-Friendly
+                    </h3>
+                    <p>
+                      Digital invites allow personalized, interactive designs
+                      while reducing paper waste and costs associated with
+                      traditional invitations.
+                    </p>
+                  </div>
+                  <div className="benefit-card flex-col">
+                    <h3>
+                      {" "}
+                      <i className="fa-solid fa-cube"></i> Real-Time Updates
+                    </h3>
+                    <p>
+                      Instantly send event updates and reminders, ensuring
+                      guests stay informed without delay or missed details.
+                    </p>
+                  </div>
                 </div>
               </figcaption>
             </figure>

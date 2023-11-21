@@ -1,11 +1,12 @@
 main#home {
   background-image: url(/public/hero-bg.jpg);
   background-attachment: fixed;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 960px) {
   div.home-section {
     gap: 6rem;
   }
@@ -67,10 +68,13 @@ main#home {
     margin-left: 4rem;
     gap: 2rem;
   }
-  div.home-section section.showcase div.container figure figcaption div.benefit-card h3 i {
+  div.home-section section.showcase div.container figure figcaption div div.benefit-card {
+    margin-bottom: 2rem;
+  }
+  div.home-section section.showcase div.container figure figcaption div div.benefit-card h3 i {
     margin-right: 1rem;
   }
-  div.home-section section.showcase div.container figure figcaption div.benefit-card p {
+  div.home-section section.showcase div.container figure figcaption div div.benefit-card p {
     padding-left: 2rem;
     margin-left: 0.65rem;
     margin-top: 0.25rem;
@@ -115,6 +119,114 @@ main#home {
   }
   div.home-section section.FAQ div.container div.questions {
     width: 60%;
+  }
+  div.home-section section.FAQ div.container div.questions div.question {
+    padding: 1.5rem 0rem;
+    gap: 0.5rem;
+    border-top: 1px solid var(--slate-gray);
+  }
+  div.home-section section.FAQ div.container div.questions div.question div.question-title {
+    justify-content: space-between;
+  }
+}
+@media screen and (max-width: 959px) {
+  div.home-section {
+    gap: 6rem;
+  }
+  div.home-section section.hero-section {
+    flex-direction: column;
+    isolation: isolate;
+  }
+  div.home-section section.hero-section div.headline {
+    gap: 2rem;
+  }
+  div.home-section section.hero-section div.headline div.cta {
+    gap: 1rem;
+  }
+  div.home-section section.hero-section img {
+    margin: -6rem 0rem 0rem;
+    z-index: -1;
+    width: 100%;
+    height: 60vh;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+  div.home-section section.features {
+    gap: 2rem;
+  }
+  div.home-section section.features div.card-container {
+    flex-wrap: wrap;
+    width: 75%;
+    gap: 3rem;
+    margin: 0 auto;
+  }
+  div.home-section section.features div.card-container div.feature-card {
+    gap: 0.5rem;
+  }
+  div.home-section section.showcase div.container figure {
+    flex-direction: column-reverse;
+    gap: 2rem;
+  }
+  div.home-section section.showcase div.container figure img {
+    width: 100%;
+    height: 75vh;
+  }
+  div.home-section section.showcase div.container figure figcaption {
+    gap: 1rem;
+  }
+  div.home-section section.showcase div.container figure figcaption div div.benefit-card {
+    width: 75%;
+    margin: 0rem auto 2rem;
+  }
+  div.home-section section.showcase div.container figure figcaption div div.benefit-card h3 {
+    margin: 1rem 0rem;
+  }
+  div.home-section section.showcase div.container figure figcaption div div.benefit-card h3 i {
+    display: block;
+    margin: 0.5rem 0rem;
+    font-size: 1rem;
+  }
+  div.home-section section.testimonials div.container {
+    gap: 2rem;
+  }
+  div.home-section section.testimonials div.container div.testimonial-container {
+    flex-direction: column;
+    gap: 4rem;
+  }
+  div.home-section section.testimonials div.container div.testimonial-container div.testimonial {
+    width: 70%;
+    margin: 0 auto;
+    gap: 1rem;
+    text-align: center;
+  }
+  div.home-section section.testimonials div.container div.testimonial-container div.testimonial figure.reviewer {
+    gap: 1rem;
+    text-align: left;
+  }
+  div.home-section section.testimonials div.container div.testimonial-container div.testimonial figure.reviewer img {
+    width: 50px;
+    height: 50px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    border-radius: 50%;
+  }
+  div.home-section section.FAQ div.container {
+    gap: 2rem;
+    flex-direction: column;
+  }
+  div.home-section section.FAQ div.container div.section-title h2 {
+    margin-bottom: 0.5rem;
+  }
+  div.home-section section.FAQ div.container div.section-title p {
+    margin: 2rem 0rem 0.5rem;
+    text-align: center;
+  }
+  div.home-section section.FAQ div.container div.section-title button.button {
+    align-self: center;
+  }
+  div.home-section section.FAQ div.container div.questions {
+    width: 80%;
+    margin: 2rem auto 0rem;
   }
   div.home-section section.FAQ div.container div.questions div.question {
     padding: 1.5rem 0rem;

@@ -3,77 +3,142 @@ footer {
   background-color: var(--bg-col);
   border-top: 1px solid var(--slate-gray);
 }
-footer div.container div.footer-body {
-  border-bottom: 1px solid var(--slate-gray);
-  padding-bottom: 2rem;
-  gap: 2rem;
+
+@media screen and (min-width: 960px) {
+  div.container div.footer-body {
+    border-bottom: 1px solid var(--slate-gray);
+    padding-bottom: 2rem;
+    gap: 2rem;
+  }
+  div.container div.footer-body div.column-1 {
+    width: 45%;
+    gap: 0.75rem;
+  }
+  div.container div.footer-body div.column-1 div.brand {
+    gap: 0.75rem;
+  }
+  div.container div.footer-body div.column-1 div.brand img {
+    width: 50px;
+  }
+  div.container div.footer-body div.column-1 div.brand h1 {
+    font-family: var(--brand-type);
+  }
+  div.container div.footer-body div.column-1 div.subscribe {
+    gap: 0.5rem;
+  }
+  div.container div.footer-body div.column-1 div.subscribe input {
+    padding: 0.4rem 0.75rem;
+    border-radius: 10px;
+    font-family: var(--link-type);
+    background: var(--bg-col);
+    border: 1px solid var(--slate-gray);
+    font-size: 0.85rem;
+    font-weight: 500;
+    width: 240px;
+    text-wrap: nowrap;
+  }
+  div.container div.footer-body div.column-2,
+  div.container div.footer-body div.column-3,
+  div.container div.footer-body div.column-4 {
+    width: 17%;
+    gap: 1rem;
+  }
+  div.container div.footer-body div.column-2 h3,
+  div.container div.footer-body div.column-3 h3,
+  div.container div.footer-body div.column-4 h3 {
+    font-size: 0.85rem;
+  }
+  div.container div.footer-body div.column-2 ul,
+  div.container div.footer-body div.column-3 ul,
+  div.container div.footer-body div.column-4 ul {
+    gap: 0.65rem;
+    font-weight: 200;
+  }
+  div.container div.footer-body div.column-2 ul li,
+  div.container div.footer-body div.column-3 ul li,
+  div.container div.footer-body div.column-4 ul li {
+    font-size: 0.75rem;
+  }
+  div.container div.footer-body div.column-2 ul li i,
+  div.container div.footer-body div.column-3 ul li i,
+  div.container div.footer-body div.column-4 ul li i {
+    margin-right: 0.5rem;
+    width: 20px;
+  }
+  div.container div.footer-closing {
+    margin-top: 0.25rem;
+    justify-content: space-between;
+  }
+  div.container div.footer-closing p.copyright-footnote i {
+    margin-right: 0.25rem;
+  }
+  div.container div.footer-closing ul.footer-policy {
+    gap: 1rem;
+  }
+  div.container div.footer-closing ul.footer-policy li {
+    font-size: 0.75rem;
+    text-decoration: underline;
+  }
 }
-footer div.container div.footer-body div.column-1 {
-  width: 45%;
-  gap: 0.75rem;
-}
-footer div.container div.footer-body div.column-1 div.brand {
-  gap: 0.75rem;
-}
-footer div.container div.footer-body div.column-1 div.brand img {
-  width: 50px;
-}
-footer div.container div.footer-body div.column-1 div.brand h1 {
-  font-family: var(--brand-type);
-}
-footer div.container div.footer-body div.column-1 div.subscribe {
-  gap: 0.5rem;
-}
-footer div.container div.footer-body div.column-1 div.subscribe input {
-  padding: 0.4rem 0.75rem;
-  border-radius: 10px;
-  font-family: var(--link-type);
-  background: var(--bg-col);
-  border: 1px solid var(--slate-gray);
-  font-size: 0.85rem;
-  font-weight: 500;
-  width: 240px;
-  text-wrap: nowrap;
-}
-footer div.container div.footer-body div.column-2,
-footer div.container div.footer-body div.column-3,
-footer div.container div.footer-body div.column-4 {
-  width: 17%;
-  gap: 1rem;
-}
-footer div.container div.footer-body div.column-2 h3,
-footer div.container div.footer-body div.column-3 h3,
-footer div.container div.footer-body div.column-4 h3 {
-  font-size: 0.85rem;
-}
-footer div.container div.footer-body div.column-2 ul,
-footer div.container div.footer-body div.column-3 ul,
-footer div.container div.footer-body div.column-4 ul {
-  gap: 0.65rem;
-  font-weight: 200;
-}
-footer div.container div.footer-body div.column-2 ul li,
-footer div.container div.footer-body div.column-3 ul li,
-footer div.container div.footer-body div.column-4 ul li {
-  font-size: 0.75rem;
-}
-footer div.container div.footer-body div.column-2 ul li i,
-footer div.container div.footer-body div.column-3 ul li i,
-footer div.container div.footer-body div.column-4 ul li i {
-  margin-right: 0.5rem;
-  width: 20px;
-}
-footer div.container div.footer-closing {
-  margin-top: 0.25rem;
-  justify-content: space-between;
-}
-footer div.container div.footer-closing p.copyright-footnote i {
-  margin-right: 0.25rem;
-}
-footer div.container div.footer-closing ul.footer-policy {
-  gap: 1rem;
-}
-footer div.container div.footer-closing ul.footer-policy li {
-  font-size: 0.75rem;
-  text-decoration: underline;
+@media screen and (max-width: 959px) {
+  div.container {
+    align-items: center;
+  }
+  div.container div.footer-body {
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid var(--slate-gray);
+    padding-bottom: 4rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  div.container div.footer-body div.column-1 {
+    align-items: center;
+    width: 100%;
+    gap: 0.75rem;
+  }
+  div.container div.footer-body div.column-1 div.brand {
+    gap: 0.75rem;
+  }
+  div.container div.footer-body div.column-1 div.brand img {
+    width: 50px;
+  }
+  div.container div.footer-body div.column-1 div.brand h1 {
+    font-family: var(--brand-type);
+  }
+  div.container div.footer-body div.column-1 div.subscribe {
+    gap: 0.5rem;
+  }
+  div.container div.footer-body div.column-1 div.subscribe input {
+    padding: 0.4rem 0.75rem;
+    border-radius: 10px;
+    font-family: var(--link-type);
+    background: var(--bg-col);
+    border: 1px solid var(--slate-gray);
+    font-size: 0.85rem;
+    font-weight: 500;
+    width: 240px;
+    text-wrap: nowrap;
+  }
+  div.container div.footer-body div.column-2,
+  div.container div.footer-body div.column-3,
+  div.container div.footer-body div.column-4 {
+    width: -moz-max-content;
+    width: max-content;
+    gap: 0.75rem;
+  }
+  div.container div.footer-body div.column-2 ul,
+  div.container div.footer-body div.column-3 ul,
+  div.container div.footer-body div.column-4 ul {
+    gap: 0.5rem;
+  }
+  div.container div.footer-closing {
+    margin-top: 0.5rem;
+    gap: 6rem;
+  }
+  div.container div.footer-closing ul {
+    gap: 1rem;
+    text-decoration: underline;
+  }
 }/*# sourceMappingURL=footer.css.map */
