@@ -30,7 +30,6 @@ footer {
     padding: 0.4rem 0.75rem;
     border-radius: 10px;
     font-family: var(--link-type);
-    background: var(--bg-col);
     border: 1px solid var(--slate-gray);
     font-size: 0.85rem;
     font-weight: 500;
@@ -114,7 +113,6 @@ footer {
     padding: 0.4rem 0.75rem;
     border-radius: 10px;
     font-family: var(--link-type);
-    background: var(--bg-col);
     border: 1px solid var(--slate-gray);
     font-size: 0.85rem;
     font-weight: 500;
@@ -132,6 +130,11 @@ footer {
   div.container div.footer-body div.column-3 ul,
   div.container div.footer-body div.column-4 ul {
     gap: 0.5rem;
+  }
+  div.container div.footer-body div.column-2 ul li i,
+  div.container div.footer-body div.column-3 ul li i,
+  div.container div.footer-body div.column-4 ul li i {
+    width: 2rem;
   }
   div.container div.footer-closing {
     margin-top: 0.5rem;

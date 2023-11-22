@@ -163,6 +163,10 @@ main#home {
   div.home-section section.features div.card-container div.feature-card {
     gap: 0.5rem;
   }
+  div.home-section section.features div.card-container div.feature-card i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
   div.home-section section.showcase div.container figure {
     flex-direction: column-reverse;
     gap: 2rem;
@@ -182,9 +186,13 @@ main#home {
     margin: 1rem 0rem;
   }
   div.home-section section.showcase div.container figure figcaption div div.benefit-card h3 i {
-    display: block;
-    margin: 0.5rem 0rem;
+    margin-right: 1rem;
     font-size: 1rem;
+  }
+  div.home-section section.showcase div.container figure figcaption div div.benefit-card p {
+    padding-left: 2rem;
+    border-left: 2px solid var(--space-cadet);
+    margin-left: 0.35rem;
   }
   div.home-section section.testimonials div.container {
     gap: 2rem;

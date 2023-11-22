@@ -1,0 +1,45 @@
+main.events-section {
+  min-height: 61vh;
+}
+
+@media screen and (min-width: 960px) {
+  main.events-section div.page-title {
+    padding-bottom: 1rem;
+    border-bottom: 0.0125rem solid var(--space-cadet);
+  }
+  main.events-section section.events-dashboard {
+    padding: 2rem;
+    gap: 1rem;
+  }
+  main.events-section section.events-dashboard div.event-card-container {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  main.events-section section.events-dashboard div.event-card-container figure.event-card {
+    width: clamp(20rem, 24rem, 28vw);
+    background-color: var(--bg-col);
+    border: 1px solid var(--space-cadet);
+    border-radius: 10px;
+  }
+  main.events-section section.events-dashboard div.event-card-container figure.event-card img {
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: 180px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom: 1px solid var(--space-cadet);
+  }
+  main.events-section section.events-dashboard div.event-card-container figure.event-card figcaption {
+    padding: 1rem;
+    gap: 0.15rem;
+  }
+  main.events-section section.events-dashboard div.event-card-container figure.event-card figcaption h3 {
+    font-size: 1rem;
+  }
+  main.events-section section.events-dashboard div.event-card-container figure.event-card figcaption div.event-date {
+    justify-content: space-between;
+  }
+  main.events-section section.events-dashboard div.event-card-container figure.event-card figcaption div.event-date p {
+    font-size: 0.75rem;
+  }
+}/*# sourceMappingURL=events.css.map */
