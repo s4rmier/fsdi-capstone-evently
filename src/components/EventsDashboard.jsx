@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import dataService from "../services/dataService";
 import EventCard from "./EventCard";
-
+import { Link } from "react-router-dom";
+0;
 function EventsDashboard() {
   const [dashboardContent, setDashboardContent] = useState([]);
 
@@ -29,9 +30,11 @@ function EventsDashboard() {
       <div className="event-card-container justify flex-row">
         {dashboardContent.length === 0 ? emptyDashboard : notEmptyDashboard}
       </div>
-      <button className="button btn-spec">
-        Create Event <i className="fa-solid fa-plus"></i>
-      </button>
+      <Link to="/events/new">
+        <button className="button btn-spec">
+          Create Event <i className="fa-solid fa-plus"></i>
+        </button>
+      </Link>
     </section>
   );
 }

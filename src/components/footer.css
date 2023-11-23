@@ -138,7 +138,8 @@ footer {
   }
   div.container div.footer-closing {
     margin-top: 0.5rem;
-    gap: 6rem;
+    justify-content: space-between;
+    width: 100%;
   }
   div.container div.footer-closing ul {
     gap: 1rem;

@@ -1,12 +1,7 @@
 import React from "react";
+import DaysCounter from "./DaysCounter";
 
 function EventCard({ eventName, eventDate, eventTime, eventCover }) {
-  const parsedEventDate = new Date(eventDate);
-  const currentDate = new Date();
-
-  const differenceMs = parsedEventDate - currentDate;
-  const daysLeft = Math.ceil(differenceMs / (1000 * 60 * 60 * 24));
-
   return (
     <figure className="event-card flex-col">
       <img src={eventCover} alt="" />
@@ -16,9 +11,7 @@ function EventCard({ eventName, eventDate, eventTime, eventCover }) {
           <p>
             <b>Date</b>: {eventDate} | <b>Time</b>: {eventTime}
           </p>
-          <p>
-            In {daysLeft} day{daysLeft > 1 && "s"}
-          </p>
+          <DaysCounter date={eventDate} />
         </div>
       </figcaption>
     </figure>

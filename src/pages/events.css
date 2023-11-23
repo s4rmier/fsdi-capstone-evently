@@ -42,4 +42,17 @@ main.events-section {
   main.events-section section.events-dashboard div.event-card-container figure.event-card figcaption div.event-date p {
     font-size: 0.75rem;
   }
+  main.event-editor {
+    min-height: 93.5vh;
+  }
+  main.event-editor div.page-title {
+    padding-bottom: 1rem;
+    border-bottom: 0.0125rem solid var(--space-cadet);
+  }
+  main.event-editor section.editor-body {
+    padding: 2rem;
+  }
+  main.event-editor section.editor-body form {
+    gap: 1.25rem;
+  }
 }/*# sourceMappingURL=events.css.map */

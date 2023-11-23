@@ -23,12 +23,12 @@ function Header() {
                 url={""}
               />
               <NavLink
-                isActiveNav={location.pathname === "/blog"}
+                isActiveNav={location.pathname.startsWith("/blog")}
                 name={"Blog"}
                 url={"blog"}
               />
               <NavLink
-                isActiveNav={location.pathname === "/events"}
+                isActiveNav={location.pathname.startsWith("/events")}
                 name={"Events"}
                 url={"events"}
               />

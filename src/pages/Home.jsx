@@ -214,8 +214,6 @@ function Home() {
                 Find answers to common questions and learn how our app can
                 benefit you.
               </h3>
-              <p>Still have questions?</p>
-              <button className="button">Contact Us</button>
             </div>
             <div className="questions flex-col">
               <div className="question flex-col">
@@ -269,6 +267,10 @@ function Home() {
                   to personalize your event page to match your branding and
                   style.
                 </p>
+              </div>
+              <div className="more-questions flex-col align justify">
+                <p>Still have questions?</p>
+                <button className="button">Contact Us</button>
               </div>
             </div>
           </div>

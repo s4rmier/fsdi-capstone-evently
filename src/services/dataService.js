@@ -5,7 +5,7 @@ class DataService {
       {
         eventName: "Hailey Turns 3!",
         eventDescription: "",
-        eventDate: "11/30/23",
+        eventDate: "11/1/23",
         eventTime: "3:00PM",
         eventAddress: "123 Victoria St., San Diego, CA, 91914",
         eventGalleryUrls: [],
