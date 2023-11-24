@@ -61,6 +61,10 @@ h1 {
   font-size: 1.25rem;
 }
 
+.button-group {
+  gap: 1rem;
+}
+
 h2 {
   font-family: var(--sub-heading-type);
   font-weight: 300;
@@ -89,20 +93,32 @@ img {
   max-width: 100%;
 }
 
-input {
-  padding: 0.25rem 0.5rem;
+input,
+select,
+textarea {
+  padding: 0.35rem 0.5rem;
   border-radius: 10px;
   font-family: var(--link-type);
   border: 1px solid var(--slate-gray);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 500;
   width: 240px;
   text-wrap: nowrap;
+  resize: none;
+}
+
+input[name=eventDate],
+input[name=eventTime] {
+  padding: 0.3rem 0.5rem;
+}
+
+textarea {
+  text-wrap: wrap;
 }
 
 label {
   font-family: var(--link-type);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-family: var(--sub-heading-type);
   font-weight: 400;
 }

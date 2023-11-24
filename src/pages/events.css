@@ -42,17 +42,91 @@ main.events-section {
   main.events-section section.events-dashboard div.event-card-container figure.event-card figcaption div.event-date p {
     font-size: 0.75rem;
   }
-  main.event-editor {
-    min-height: 93.5vh;
-  }
   main.event-editor div.page-title {
     padding-bottom: 1rem;
     border-bottom: 0.0125rem solid var(--space-cadet);
   }
   main.event-editor section.editor-body {
+    width: 100%;
     padding: 2rem;
+    gap: 4rem;
   }
   main.event-editor section.editor-body form {
     gap: 1.25rem;
+  }
+  main.event-editor section.editor-body form .form-divider {
+    gap: 0.5rem;
+  }
+  main.event-editor section.editor-body form div.form-input {
+    gap: 0.15rem;
+  }
+  main.event-editor div.editor-preview {
+    height: 932px;
+    width: 430px;
+    border-radius: 10px;
+    border: 1px solid var(--space-cadet);
+    margin-top: -2.85rem;
+    scale: 0.9;
+  }
+  main.event-editor div.editor-preview div.event-preview {
+    height: 100%;
+    width: 100%;
+    isolation: isolate;
+  }
+  main.event-editor div.editor-preview div.event-preview div.coverImg {
+    z-index: -1;
+    height: 20%;
+  }
+  main.event-editor div.editor-preview div.event-preview div.coverImg img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+    height: 100%;
+    -o-object-position: center center;
+       object-position: center center;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  main.event-editor div.editor-preview div.event-preview div.event-title {
+    margin-top: -15%;
+    width: 100%;
+    padding: 2.5%;
+    gap: 1rem;
+  }
+  main.event-editor div.editor-preview div.event-preview div.event-title img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 4px solid white;
+    -o-object-position: center center;
+       object-position: center center;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  main.event-editor div.editor-preview div.event-preview div.event-title div.title-box {
+    align-self: flex-end;
+  }
+  main.event-editor div.editor-preview div.event-preview div.event-title div.title-box h1 {
+    font-size: 1.25rem;
+    font-family: var(--body-type);
+  }
+  main.event-editor div.editor-preview div.event-preview div.event-title div.title-box p {
+    font-size: 0.75rem;
+    font-weight: 800;
+  }
+  main.event-editor div.editor-preview div.event-preview div.event-description {
+    padding: 0.5rem 10%;
+  }
+  main.event-editor div.editor-preview div.event-preview div.event-description p {
+    font-family: var(--body-type);
+    font-size: 0.75rem;
+  }
+  main.event-editor button[type=submit] {
+    margin: 0.5rem 0rem;
+    align-self: flex-end;
+  }
+  main.event-editor div.button-group {
+    margin: 0rem;
+    padding: 0rem;
   }
 }/*# sourceMappingURL=events.css.map */

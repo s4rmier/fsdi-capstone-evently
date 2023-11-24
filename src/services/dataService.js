@@ -3,7 +3,7 @@ class DataService {
     // todo: call the server
     return [
       {
-        eventName: "Hailey Turns 3!",
+        eventTitle: "Hailey Turns 3!",
         eventDescription: "",
         eventDate: "11/1/23",
         eventTime: "3:00PM",
@@ -16,7 +16,7 @@ class DataService {
         _id: "",
       },
       {
-        eventName: "Harry Potter - Book Tour",
+        eventTitle: "Harry Potter - Book Tour",
         eventDescription: "",
         eventDate: "06/25/24",
         eventTime: "10:00AM",
