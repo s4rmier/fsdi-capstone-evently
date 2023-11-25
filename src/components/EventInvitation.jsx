@@ -73,7 +73,7 @@ function EventInvitation({
 
       <div className="event-rsvp container flex-col">
         <h1 className="main-headline">Let us know you're coming</h1>
-        <form action="" className="flex-col align">
+        <form action="" className="flex-col">
           <div className="flex-row align">
             <label htmlFor="">Name : </label>
             <input type="text" />
@@ -84,7 +84,7 @@ function EventInvitation({
           </div>
           <div className="flex-row align">
             <label htmlFor="">Extra Guests? : </label>
-            <input type="" />
+            <input type="number" className="qty-input" />
           </div>
           <button className="button btn-spec">RSVP</button>
         </form>

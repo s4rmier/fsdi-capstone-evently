@@ -43,7 +43,7 @@ main.events-section {
     font-size: 0.75rem;
   }
   main.event-editor {
-    padding: 0rem;
+    padding: 2rem 0rem 0rem;
   }
   main.event-editor div.page-title {
     padding-bottom: 1rem;
@@ -51,7 +51,7 @@ main.events-section {
   }
   main.event-editor section.editor-body {
     width: 100%;
-    padding: 2rem 2rem 0rem;
+    padding: 2rem;
     gap: 4rem;
   }
   main.event-editor section.editor-body form {
@@ -68,8 +68,6 @@ main.events-section {
     width: 430px;
     border-radius: 10px;
     border: 1px solid var(--space-cadet);
-    margin-top: -5rem;
-    scale: 0.85;
     background-image: url(/public/hero-bg.jpg);
     background-size: cover;
   }
@@ -172,7 +170,7 @@ main.events-section {
   }
   main.event-editor div.editor-preview div.event-preview div.event-rsvp {
     margin-top: 0.5rem;
-    gap: 0.75rem;
+    gap: 1.5rem;
   }
   main.event-editor div.editor-preview div.event-preview div.event-rsvp h1 {
     text-align: center;
@@ -186,8 +184,12 @@ main.events-section {
     text-wrap: nowrap;
     text-align: right;
   }
+  main.event-editor div.editor-preview div.event-preview div.event-rsvp form input.qty-input {
+    width: 80px;
+  }
   main.event-editor div.editor-preview div.event-preview div.event-rsvp form button.button {
-    margin: 1rem 0rem;
+    margin-top: 1rem;
+    align-self: center;
   }
   main.event-editor button[type=submit] {
     margin: 0.5rem 0rem;
