@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import EventPreview from "../components/EventPreview";
+import EventInvitation from "../components/EventInvitation";
 
 function EventEditor() {
   const [eventData, setEventData] = useState({
@@ -19,7 +19,6 @@ function EventEditor() {
   function handleInputChange(event) {
     let { value } = event.target;
     let { name } = event.target;
-    console.log(name, value);
     setEventData({ ...eventData, [name]: value });
   }
 
@@ -28,7 +27,6 @@ function EventEditor() {
     const updatedGalleryUrls = [...eventData.eventGalleryUrls];
     updatedGalleryUrls[index] = value;
     setEventData({ ...eventData, eventGalleryUrls: updatedGalleryUrls });
-    console.log(eventData.eventGalleryUrls);
   }
 
   return (
@@ -49,10 +47,11 @@ function EventEditor() {
                 id="eventTitle"
                 name="eventTitle"
                 type="text"
-                maxLength={64}
-                placeholder="Enter event title (max 64 characters)"
+                maxLength={28}
+                placeholder="Enter event title (max 28 characters)"
               />
             </div>
+
             <div className="form-input flex-col">
               <label htmlFor="eventDate">Event Date:</label>
               <input
@@ -63,6 +62,7 @@ function EventEditor() {
                 id="eventDate"
               />
             </div>
+
             <div className="form-input flex-col">
               <label htmlFor="eventTime">Event Time:</label>
               <input
@@ -73,6 +73,7 @@ function EventEditor() {
                 id="eventTime"
               />
             </div>
+
             <div className="form-input flex-col">
               <label htmlFor="eventDescription">Event Description:</label>
               <textarea
@@ -100,6 +101,7 @@ function EventEditor() {
                 placeholder="Enter the address for the event"
               />
             </div>
+
             <div className="form-input flex-col">
               <label htmlFor="coverPhoto">Cover Photo:</label>
               <input
@@ -110,6 +112,7 @@ function EventEditor() {
                 placeholder="Insert image URL"
               />
             </div>
+
             <div className="form-input flex-col">
               <label htmlFor="thumbnailPhoto"> Thumbnail Photo :</label>
               <input
@@ -121,6 +124,7 @@ function EventEditor() {
                 placeholder="Insert image URL"
               />
             </div>
+
             <div className="form-input flex-col">
               <label htmlFor="">Gallery Photos:</label>
               <input
@@ -130,6 +134,7 @@ function EventEditor() {
                 type="url"
                 placeholder="Insert image URL"
               />
+
               <input
                 onChange={(event) => handleGalleryChange(1, event)}
                 value={eventData.eventGalleryUrls[1]}
@@ -137,6 +142,7 @@ function EventEditor() {
                 type="url"
                 placeholder="Insert image URL"
               />
+
               <input
                 onChange={(event) => handleGalleryChange(2, event)}
                 value={eventData.eventGalleryUrls[2]}
@@ -144,6 +150,7 @@ function EventEditor() {
                 type="url"
                 placeholder="Insert image URL"
               />
+
               <input
                 onChange={(event) => handleGalleryChange(3, event)}
                 value={eventData.eventGalleryUrls[3]}
@@ -157,6 +164,7 @@ function EventEditor() {
               <Link to="/events">
                 <button className="button">Cancel</button>
               </Link>
+
               <button type="submit" className="button btn-spec">
                 Save
               </button>
@@ -165,7 +173,7 @@ function EventEditor() {
         </form>
 
         <div className="editor-preview flex-col">
-          <EventPreview {...eventData} />
+          <EventInvitation {...eventData} />
         </div>
       </section>
     </main>
