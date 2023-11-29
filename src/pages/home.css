@@ -148,7 +148,7 @@ main#home {
     gap: 1rem;
   }
   div.home-section section.hero-section img {
-    margin: -6rem 0rem 0rem;
+    margin: -4rem 0rem 0rem;
     z-index: -1;
     width: 100%;
     height: 60vh;

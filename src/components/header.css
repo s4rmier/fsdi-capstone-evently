@@ -58,4 +58,9 @@ header {
   div.container div.left-col div.nav-actions {
     gap: 1rem;
   }
+}
+@media screen and (max-width: 576px) {
+  header div.left-col {
+    display: none;
+  }
 }/*# sourceMappingURL=header.css.map */

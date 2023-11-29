@@ -23,10 +23,31 @@ function EventEditor() {
   }
 
   function handleGalleryChange(index, event) {
-    const { value } = event.target;
-    const updatedGalleryUrls = [...eventData.eventGalleryUrls];
-    updatedGalleryUrls[index] = value;
-    setEventData({ ...eventData, eventGalleryUrls: updatedGalleryUrls });
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const imageData = reader.result;
+        const updatedGalleryUrls = [...eventData.eventGalleryUrls];
+        updatedGalleryUrls[index] = imageData;
+        setEventData({ ...eventData, eventGalleryUrls: updatedGalleryUrls });
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  function handleFileInputChange(event, fieldName) {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const imageData = reader.result;
+        setEventData({ ...eventData, [fieldName]: imageData });
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   return (
@@ -105,59 +126,38 @@ function EventEditor() {
             <div className="form-input flex-col">
               <label htmlFor="coverPhoto">Cover Photo:</label>
               <input
-                name="eventCover"
-                onChange={(event) => handleInputChange(event)}
-                value={eventData.eventCover}
-                type="url"
-                placeholder="Insert image URL"
+                type="file"
+                onChange={(event) => handleFileInputChange(event, "eventCover")}
+                name="eventCoverFile"
+                accept="image/*"
               />
             </div>
 
             <div className="form-input flex-col">
               <label htmlFor="thumbnailPhoto"> Thumbnail Photo :</label>
               <input
-                type="url"
-                onChange={(event) => handleInputChange(event)}
-                value={eventData.eventThumbnail}
-                name="eventThumbnail"
+                type="file"
+                onChange={(event) =>
+                  handleFileInputChange(event, "eventThumbnail")
+                }
+                name="eventThumbnailFile"
                 id="thumbnailPhoto"
-                placeholder="Insert image URL"
+                accept="image/*"
               />
             </div>
 
             <div className="form-input flex-col">
               <label htmlFor="">Gallery Photos:</label>
-              <input
-                onChange={(event) => handleGalleryChange(0, event)}
-                value={eventData.eventGalleryUrls[0]}
-                name="gallery1"
-                type="url"
-                placeholder="Insert image URL"
-              />
-
-              <input
-                onChange={(event) => handleGalleryChange(1, event)}
-                value={eventData.eventGalleryUrls[1]}
-                name="gallery2"
-                type="url"
-                placeholder="Insert image URL"
-              />
-
-              <input
-                onChange={(event) => handleGalleryChange(2, event)}
-                value={eventData.eventGalleryUrls[2]}
-                name="gallery3"
-                type="url"
-                placeholder="Insert image URL"
-              />
-
-              <input
-                onChange={(event) => handleGalleryChange(3, event)}
-                value={eventData.eventGalleryUrls[3]}
-                name="gallery4"
-                type="url"
-                placeholder="Insert image URL"
-              />
+              {[0, 1, 2, 3].map((index) => (
+                <div key={index}>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(event) => handleGalleryChange(index, event)}
+                    name={`gallery${index + 1}File`}
+                  />
+                </div>
+              ))}
             </div>
 
             <div className="button-group flex-row align">

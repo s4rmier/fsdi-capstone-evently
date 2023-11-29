@@ -15,6 +15,7 @@ function Header() {
               <h2 className="brand-name">Evently</h2>
             </div>
           </Link>
+
           <nav>
             <ul className="flex-row">
               <NavLink
@@ -40,6 +41,7 @@ function Header() {
             </ul>
           </nav>
         </div>
+
         <div className="left-col">
           <div className="nav-actions flex-row align">
             <button id="nav-get-started" className="button btn-spec">

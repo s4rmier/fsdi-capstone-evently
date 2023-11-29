@@ -21,8 +21,8 @@ function EventsDashboard() {
     </div>
   );
 
-  let notEmptyDashboard = dashboardContent.map((event, index) => (
-    <EventCard key={index} {...event} />
+  let notEmptyDashboard = dashboardContent.map((eventItem, index) => (
+    <EventCard key={index} {...eventItem} />
   ));
 
   return (
