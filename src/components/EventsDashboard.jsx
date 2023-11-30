@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import dataService from "../services/dataService";
+import DataService from "../services/dataService";
 import EventCard from "./EventCard";
 import { Link } from "react-router-dom";
 0;
 function EventsDashboard() {
   const [dashboardContent, setDashboardContent] = useState([]);
 
-  function loadData() {
-    const data = dataService.getList();
-    setDashboardContent(data);
-  }
-
   useEffect(() => {
     loadData();
   }, []);
+
+  async function loadData() {
+    let events = await DataService.getEvents();
+    setDashboardContent(events);
+  }
 
   let emptyDashboard = (
     <div className="empty-dashboard flex-col align justify">
