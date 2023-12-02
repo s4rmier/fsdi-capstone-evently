@@ -6,18 +6,23 @@ function DaysCounter({ date }) {
 
   const differenceMs = parsedEventDate - currentDate;
   const daysLeft = Math.ceil(differenceMs / (1000 * 60 * 60 * 24));
+  console.log(daysLeft);
 
-  return (
-    <>
-      {daysLeft >= 0 ? (
-        <p>
-          In {daysLeft} day{daysLeft > 1 && "s"}
-        </p>
-      ) : (
-        <p className="done">Done</p>
-      )}
-    </>
-  );
+  let dateCount;
+
+  if (daysLeft == 0) {
+    dateCount = <p className="special">Today</p>;
+  } else if (daysLeft >= 1) {
+    dateCount = (
+      <p className="not-important">
+        In {daysLeft} Day{daysLeft > 1 ? "s" : ""}
+      </p>
+    );
+  } else {
+    dateCount = <p>Done</p>;
+  }
+
+  return <>{dateCount}</>;
 }
 
 export default DaysCounter;

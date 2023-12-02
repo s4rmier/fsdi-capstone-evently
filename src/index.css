@@ -123,6 +123,20 @@ label {
   font-weight: 400;
 }
 
+p.special {
+  padding: 0.25rem 0.5rem;
+  border-radius: 10px;
+  background-color: var(--lavender);
+  font-weight: 500;
+}
+
+p.not-important {
+  padding: 0.25rem 0.5rem;
+  border-radius: 10px;
+  background-color: var(--lavender);
+  opacity: 0.5;
+}
+
 /* Utility Classes */
 .flex-col {
   display: flex;

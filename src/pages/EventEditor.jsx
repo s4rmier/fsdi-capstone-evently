@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import EventInvitation from "../components/EventInvitation";
+import DataService from "../services/dataService";
 
 function EventEditor() {
   const [eventData, setEventData] = useState({
@@ -15,6 +16,11 @@ function EventEditor() {
     userID: "",
     _id: "",
   });
+
+  function submitForm(event) {
+    event.preventDefault();
+    const postResult = DataService.submitEvent(eventData);
+  }
 
   function handleInputChange(event) {
     let { value } = event.target;
@@ -70,6 +76,7 @@ function EventEditor() {
                 type="text"
                 maxLength={28}
                 placeholder="Enter event title (max 28 characters)"
+                required
               />
             </div>
 
@@ -81,6 +88,7 @@ function EventEditor() {
                 value={eventData.eventDate}
                 type="date"
                 id="eventDate"
+                required
               />
             </div>
 
@@ -92,6 +100,7 @@ function EventEditor() {
                 value={eventData.eventTime}
                 type="time"
                 id="eventTime"
+                required
               />
             </div>
 
@@ -106,6 +115,7 @@ function EventEditor() {
                 rows="7"
                 maxLength={256}
                 placeholder="Enter event description (max 256 characters)"
+                required
               ></textarea>
             </div>
           </div>
@@ -120,6 +130,7 @@ function EventEditor() {
                 type="text"
                 id="eventAddress"
                 placeholder="Enter the address for the event"
+                required
               />
             </div>
 
@@ -130,6 +141,7 @@ function EventEditor() {
                 onChange={(event) => handleFileInputChange(event, "eventCover")}
                 name="eventCoverFile"
                 accept="image/*"
+                required
               />
             </div>
 
@@ -165,7 +177,11 @@ function EventEditor() {
                 <button className="button">Cancel</button>
               </Link>
 
-              <button type="submit" className="button btn-spec">
+              <button
+                onClick={submitForm}
+                type="submit"
+                className="button btn-spec"
+              >
                 Save
               </button>
             </div>

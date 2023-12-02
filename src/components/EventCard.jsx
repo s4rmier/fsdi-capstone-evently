@@ -3,7 +3,7 @@ import DaysCounter from "./DaysCounter";
 import { useEffect, useState } from "react";
 import DataService from "../services/dataService";
 
-function EventCard({ title, date, time, id }) {
+function EventCard({ eventTitle, eventDate, eventTime, id }) {
   const [eventImages, setEventImages] = useState([]);
 
   useEffect(() => {
@@ -27,12 +27,12 @@ function EventCard({ title, date, time, id }) {
     <figure className="event-card flex-col">
       <img src={getCoverImage()} alt="" />
       <figcaption className="flex-col">
-        <h3>{title}</h3>
+        <h3>{eventTitle}</h3>
         <div className="event-date flex-row">
           <p>
-            <b>Date</b>: {date} | <b>Time</b>: {time}
+            <b>Date</b>: {eventDate} | <b>Time</b>: {eventTime}
           </p>
-          <DaysCounter date={date} />
+          <DaysCounter date={eventDate} />
         </div>
       </figcaption>
     </figure>

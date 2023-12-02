@@ -6,22 +6,25 @@ import Events from "./pages/Events";
 import EventEditor from "./pages/EventEditor";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import GlobalState from "../store/globalState";
 
 function App() {
   return (
-    <BrowserRouter>
-      <>
-        <Header />
+    <GlobalState>
+      <BrowserRouter>
+        <>
+          <Header />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/events/new" element={<EventEditor />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/events/new" element={<EventEditor />} />
+          </Routes>
 
-        <Footer />
-      </>
-    </BrowserRouter>
+          <Footer />
+        </>
+      </BrowserRouter>
+    </GlobalState>
   );
 }
 
