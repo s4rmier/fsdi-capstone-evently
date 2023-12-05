@@ -11,21 +11,26 @@ function EventCard({ eventTitle, eventDate, eventTime, id }) {
   }, []);
 
   async function getImage() {
-    let eventCover = await DataService.loadEventImage(id);
-    setEventImages(eventCover);
+    try {
+      let images = await DataService.loadEventImage(id);
+      setEventImages(images);
+    } catch (error) {
+      console.error("Error loading event images:", error);
+    }
   }
 
-  function getCoverImage() {
-    if (eventImages?.length < 1) {
-      return "";
+  function getAssignedImg(imgtype) {
+    if (eventImages.length > 0) {
+      const foundImage = eventImages.find((image) => image.imgtype === imgtype);
+      return foundImage ? foundImage.image : null;
+    } else {
+      return null;
     }
-
-    return eventImages[0].image;
   }
 
   return (
     <figure className="event-card flex-col">
-      <img src={getCoverImage()} alt="" />
+      <img src={getAssignedImg(1)} alt="" />
       <figcaption className="flex-col">
         <h3>{eventTitle}</h3>
         <div className="event-date flex-row">

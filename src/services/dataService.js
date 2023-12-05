@@ -5,7 +5,6 @@ class DataService {
 
   async getEvents() {
     const response = await axios.get(this.serverURL + "/api/event/");
-    console.log(response.data);
     return response.data;
   }
 
@@ -13,7 +12,7 @@ class DataService {
     const response = await axios.get(
       this.serverURL + `/api/eventImage/${id}/images`
     );
-    console.log(response.data);
+    console.log("load event image", response.data);
     return response.data;
   }
 
@@ -24,6 +23,24 @@ class DataService {
       {
         headers: {
           "Content-Type": "application/json",
+        },
+      }
+    );
+    return response;
+  }
+
+  async uploadImage(eventId, file, imgType) {
+    const formdata = new FormData();
+    formdata.append("event", eventId);
+    formdata.append("image", file);
+    formdata.append("imgtype", imgType);
+
+    const response = await axios.post(
+      this.serverURL + "/api/eventImage/",
+      formdata,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
         },
       }
     );

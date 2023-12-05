@@ -1,4 +1,10 @@
+import { useEffect } from "react";
+
 function LoadingModal({ modalOpen, message }) {
+  useEffect(() => {
+    document.body.style.overflow = modalOpen ? "hidden" : "auto";
+  }, [modalOpen]);
+
   return modalOpen ? (
     <div className="loading-modal modal-container">
       <div className="modal-body">

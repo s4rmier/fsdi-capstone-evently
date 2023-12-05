@@ -8,17 +8,36 @@ import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GlobalState from "../store/globalState";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
+  const successLoading = () => toast("Submitted Successfully");
+  const errorLoading = () => toast("Error communicating with the server");
+
   return (
     <GlobalState>
       <BrowserRouter>
         <>
           <Header />
 
+          <ToastContainer />
+
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/events/new" element={<EventEditor />} />
+            <Route
+              path="/events"
+              element={
+                <Events
+                  errorLoading={errorLoading}
+                  successLoading={successLoading}
+                />
+              }
+            />
+            <Route
+              path="/events/new"
+              element={<EventEditor successLoading={successLoading} />}
+            />
           </Routes>
 
           <Footer />

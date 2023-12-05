@@ -4,7 +4,7 @@ import EventInvitation from "../components/EventInvitation";
 import DataService from "../services/dataService";
 import LoadingModal from "../components/LoadingModal";
 
-function EventEditor() {
+function EventEditor({ successLoading }) {
   const navigate = useNavigate();
   const [eventData, setEventData] = useState({
     eventTitle: "",
@@ -19,32 +19,51 @@ function EventEditor() {
     _id: "",
   });
 
+  const [eventImageFiles, setEventImageFiles] = useState({
+    eventCover: "",
+    eventThumbnail: "",
+  });
+
   const [loadingIsVisible, setLoadingIsVisible] = useState(false);
 
   // Sending POST request to save the entry to the database
 
-  function submitForm(event, eventData) {
-    submitEvent(event, eventData);
-    clearForm();
-  }
-
   async function submitEvent(event, eventData) {
     event.preventDefault();
-    try {
-      const response = await DataService.postEvent(eventData);
-      setLoadingIsVisible(true);
 
+    try {
+      setLoadingIsVisible(true);
+      const response = await DataService.postEvent(eventData);
       if (response.status === 201) {
         console.log(response.data);
-        navigate("/events");
+        uploadImages(response.data.id);
+        successLoading();
+        clearForm();
         setLoadingIsVisible(false);
+        navigate("/events");
       } else {
         console.log(response.error);
         setLoadingIsVisible(false);
       }
     } catch (error) {
       console.error("Error submitting the form:", error);
+      setLoadingIsVisible(false);
     }
+  }
+
+  async function uploadImages(eventId) {
+    // in series
+    if (eventImageFiles.eventCover) {
+      await DataService.uploadImage(eventId, eventImageFiles.eventCover, 1);
+    }
+    if (eventImageFiles.eventThumbnail) {
+      await DataService.uploadImage(eventId, eventImageFiles.eventThumbnail, 2);
+    }
+
+    // for
+
+    // in parallel
+    // promise.all([a, b])
   }
 
   // Form Related
@@ -72,6 +91,11 @@ function EventEditor() {
 
   function handleFileInputChange(event, fieldName) {
     const file = event.target.files[0];
+
+    setEventImageFiles({
+      ...eventImageFiles,
+      [fieldName]: file,
+    });
 
     if (file) {
       const reader = new FileReader();
@@ -225,7 +249,7 @@ function EventEditor() {
               </Link>
 
               <button
-                onClick={() => submitForm(event, eventData)}
+                onClick={(event) => submitEvent(event, eventData)}
                 type="submit"
                 className="button btn-spec"
               >

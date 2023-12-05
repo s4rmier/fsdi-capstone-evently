@@ -11,7 +11,7 @@ function Footer() {
               <img src="/logo.svg" alt="" />
               <h1>Evently</h1>
             </div>
-            <p>Join our mailing list ofr the latest updates.</p>
+            <p>Join our mailing list for the latest updates.</p>
             <div className="subscribe flex-row align">
               <input type="email" placeholder="Enter your email" />
               <button className="btn-spec button">Subscribe</button>
