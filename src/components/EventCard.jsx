@@ -3,6 +3,7 @@ import DaysCounter from "./DaysCounter";
 import { useEffect, useState } from "react";
 import DataService from "../services/dataService";
 import DeleteEvent from "./DeleteEvent";
+import { Link } from "react-router-dom";
 
 function EventCard({
   eventTitle,
@@ -36,19 +37,21 @@ function EventCard({
   }
 
   return (
-    <figure className="event-card flex-col">
-      <img src={getAssignedImg(1)} alt="" />
-      <figcaption className="flex-col">
-        <h3>{eventTitle}</h3>
-        <div className="event-date flex-row">
-          <p>
-            <b>Date</b>: {eventDate} | <b>Time</b>: {eventTime}
-          </p>
-          <DaysCounter date={eventDate} />
-        </div>
-      </figcaption>
-      <DeleteEvent handleEventUpdate={handleEventUpdate} id={id} />
-    </figure>
+    <Link to={`/events/${id}`}>
+      <figure className="event-card flex-col">
+        <img src={getAssignedImg(1)} alt="" />
+        <figcaption className="flex-col">
+          <h3>{eventTitle}</h3>
+          <div className="event-date flex-row">
+            <p>
+              <b>Date</b>: {eventDate} | <b>Time</b>: {eventTime}
+            </p>
+            <DaysCounter date={eventDate} />
+          </div>
+        </figcaption>
+        <DeleteEvent handleEventUpdate={handleEventUpdate} id={id} />
+      </figure>
+    </Link>
   );
 }
 

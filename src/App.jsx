@@ -7,6 +7,7 @@ import EventEditor from "./pages/EventEditor";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GlobalState from "../store/globalState";
+import EventDetailsPage from "./components/EventDetailsPage";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -42,6 +43,7 @@ function App() {
               path="/events/new"
               element={<EventEditor successLoading={successLoading} />}
             />
+            <Route path="/events/:id" element={<EventDetailsPage />} />
           </Routes>
 
           <Footer />
