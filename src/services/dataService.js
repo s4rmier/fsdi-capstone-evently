@@ -17,27 +17,17 @@ class DataService {
     return response.data;
   }
 
-  async submitEvent(eventData) {
-    try {
-      const response = await axios.post(
-        this.serverURL + "/api/event/",
-        eventData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (response.status === 201) {
-        console.log(response.data);
-      } else {
-        console.log(response.error);
+  async postEvent(eventData) {
+    const response = await axios.post(
+      this.serverURL + "/api/event/",
+      eventData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
-    } catch (error) {
-      console.error("Error submitting the form:", error);
-    }
+    );
+    return response;
   }
 }
-
 export default new DataService();

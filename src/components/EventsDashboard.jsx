@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import DataService from "../services/dataService";
 import EventCard from "./EventCard";
 import { Link } from "react-router-dom";
-0;
+
 function EventsDashboard() {
   const [dashboardContent, setDashboardContent] = useState([]);
 

@@ -6,7 +6,6 @@ function DaysCounter({ date }) {
 
   const differenceMs = parsedEventDate - currentDate;
   const daysLeft = Math.ceil(differenceMs / (1000 * 60 * 60 * 24));
-  console.log(daysLeft);
 
   let dateCount;
 

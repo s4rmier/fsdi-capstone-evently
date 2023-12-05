@@ -196,6 +196,29 @@ button.btn-spec {
   font-weight: 600;
 }
 
+div.loading-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: grid;
+  place-items: center;
+}
+div.loading-modal div.modal-body {
+  position: absolute;
+  width: clamp(300px, 30%, 50vw);
+  height: clamp(300px, 30%, 50vw);
+  background-color: var(--bg-col);
+  display: grid;
+  place-items: center;
+  border-radius: 20px;
+}
+div.loading-modal div.modal-body img {
+  height: 75px;
+  width: 75px;
+  margin-bottom: -25%;
+}
+
 @media screen and (max-width: 959px) {
   html {
     font-size: 14px;

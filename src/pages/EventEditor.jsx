@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import EventInvitation from "../components/EventInvitation";
 import DataService from "../services/dataService";
+import LoadingModal from "../components/LoadingModal";
 
 function EventEditor() {
+  const navigate = useNavigate();
   const [eventData, setEventData] = useState({
     eventTitle: "",
     eventDescription: "",
@@ -17,10 +19,35 @@ function EventEditor() {
     _id: "",
   });
 
-  function submitForm(event) {
-    event.preventDefault();
-    const postResult = DataService.submitEvent(eventData);
+  const [loadingIsVisible, setLoadingIsVisible] = useState(false);
+
+  // Sending POST request to save the entry to the database
+
+  function submitForm(event, eventData) {
+    submitEvent(event, eventData);
+    clearForm();
   }
+
+  async function submitEvent(event, eventData) {
+    event.preventDefault();
+    try {
+      const response = await DataService.postEvent(eventData);
+      setLoadingIsVisible(true);
+
+      if (response.status === 201) {
+        console.log(response.data);
+        navigate("/events");
+        setLoadingIsVisible(false);
+      } else {
+        console.log(response.error);
+        setLoadingIsVisible(false);
+      }
+    } catch (error) {
+      console.error("Error submitting the form:", error);
+    }
+  }
+
+  // Form Related
 
   function handleInputChange(event) {
     let { value } = event.target;
@@ -56,12 +83,32 @@ function EventEditor() {
     }
   }
 
+  function clearForm() {
+    setEventData({
+      eventTitle: "",
+      eventDescription: "",
+      eventDate: "",
+      eventTime: "",
+      eventAddress: "",
+      eventGalleryUrls: ["", "", "", ""],
+      eventThumbnail: "",
+      eventCover: "",
+      userID: "",
+      _id: "",
+    });
+  }
+
   return (
     <main className="event-editor container">
       <div className="page-title">
         <h1 className="main-headline">Event Editor</h1>
         <p>Update, modify, or delete your event</p>
       </div>
+
+      <LoadingModal
+        modalOpen={loadingIsVisible}
+        message={"Uploading, please wait"}
+      />
 
       <section className="editor-body flex-row justify">
         <form className="flex-row">
@@ -125,7 +172,7 @@ function EventEditor() {
               <label htmlFor="eventAddress">Event Address:</label>
               <input
                 name="eventAddress"
-                onChange={() => handleInputChange(event)}
+                onChange={(event) => handleInputChange(event)}
                 value={eventData.eventAddress}
                 type="text"
                 id="eventAddress"
@@ -178,7 +225,7 @@ function EventEditor() {
               </Link>
 
               <button
-                onClick={submitForm}
+                onClick={() => submitForm(event, eventData)}
                 type="submit"
                 className="button btn-spec"
               >
