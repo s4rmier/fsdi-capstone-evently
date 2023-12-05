@@ -12,7 +12,7 @@ class DataService {
     const response = await axios.get(
       this.serverURL + `/api/eventImage/${id}/images`
     );
-    console.log("load event image", response.data);
+    // console.log("load event image", response.data);
     return response.data;
   }
 
@@ -44,6 +44,11 @@ class DataService {
         },
       }
     );
+    return response;
+  }
+
+  async deleteEvent(id) {
+    const response = await axios.delete(this.serverURL + "/api/event/" + id);
     return response;
   }
 }

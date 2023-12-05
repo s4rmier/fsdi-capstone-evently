@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DataService from "../services/dataService";
 import EventCard from "./EventCard";
-import { Link } from "react-router-dom";
 
 function EventsDashboard() {
   const [dashboardContent, setDashboardContent] = useState([]);
@@ -15,6 +14,12 @@ function EventsDashboard() {
     setDashboardContent(events);
   }
 
+  const handleEventUpdate = () => {
+    loadData();
+  };
+
+  // UI Related
+
   let emptyDashboard = (
     <div className="empty-dashboard flex-col align justify">
       <p className="sub-headline">You don't have any events. Create one now?</p>
@@ -22,7 +27,11 @@ function EventsDashboard() {
   );
 
   let notEmptyDashboard = dashboardContent.map((eventItem, index) => (
-    <EventCard key={index} {...eventItem} />
+    <EventCard
+      handleEventUpdate={handleEventUpdate}
+      key={index}
+      {...eventItem}
+    />
   ));
 
   return (
@@ -30,11 +39,6 @@ function EventsDashboard() {
       <div className="event-card-container justify flex-row">
         {dashboardContent.length === 0 ? emptyDashboard : notEmptyDashboard}
       </div>
-      <Link to="/events/new">
-        <button className="button btn-spec">
-          Create Event <i className="fa-solid fa-plus"></i>
-        </button>
-      </Link>
     </section>
   );
 }

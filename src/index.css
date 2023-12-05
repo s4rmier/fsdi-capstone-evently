@@ -219,6 +219,45 @@ div.loading-modal div.modal-body img {
   margin-bottom: -35%;
 }
 
+div.delete-confirmation-modal {
+  position: absolute;
+  display: grid;
+  place-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 2rem;
+  z-index: 99999;
+  background-color: rgba(243, 239, 245, 0.75);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  border-radius: 10px;
+}
+div.delete-confirmation-modal div.confirmation-modal-body {
+  border-radius: 10px;
+  gap: 0.75rem;
+}
+div.delete-confirmation-modal div.confirmation-modal-body div button {
+  margin: 0.5rem;
+}
+div.delete-confirmation-modal div.confirmation-modal-body div button:nth-child(1) {
+  background-color: var(--apricot);
+}
+
+div.delete-event-btn {
+  position: absolute;
+  right: 0.75rem;
+  top: 0.75rem;
+  padding: 0.35rem 0.65rem;
+  background-color: rgba(229, 234, 250, 0.85);
+  border-radius: 50%;
+  border: 0.5px solid var(--space-cadet);
+  cursor: pointer;
+}
+div.delete-event-btn i {
+  font-size: 0.85rem;
+  color: var(--redwood);
+}
+
 @media screen and (max-width: 959px) {
   html {
     font-size: 14px;

@@ -24,6 +24,13 @@ function EventEditor({ successLoading }) {
     eventThumbnail: "",
   });
 
+  const [galleryFiles, setGalleryFiles] = useState({
+    gallery1File: null,
+    gallery2File: null,
+    gallery3File: null,
+    gallery4File: null,
+  });
+
   const [loadingIsVisible, setLoadingIsVisible] = useState(false);
 
   // Sending POST request to save the entry to the database
@@ -61,7 +68,17 @@ function EventEditor({ successLoading }) {
     }
 
     // for
-
+    for (let i = 0; i < eventData.eventGalleryUrls.length; i++) {
+      const file = galleryFiles[`gallery${i + 1}File`];
+      if (eventData.eventGalleryUrls[i] && file) {
+        await DataService.uploadImage(
+          eventId,
+          file,
+          3 // Set image type as 3 for all gallery images
+        );
+        console.log("Successful gallery upload: ", i);
+      }
+    }
     // in parallel
     // promise.all([a, b])
   }
@@ -74,6 +91,21 @@ function EventEditor({ successLoading }) {
     setEventData({ ...eventData, [name]: value });
   }
 
+  // function handleGalleryChange(index, event) {
+  //   const file = event.target.files[0];
+
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       const imageData = reader.result;
+  //       const updatedGalleryUrls = [...eventData.eventGalleryUrls];
+  //       updatedGalleryUrls[index] = imageData;
+  //       setEventData({ ...eventData, eventGalleryUrls: updatedGalleryUrls });
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // } *Old code to fallback incase below didnt work*
+
   function handleGalleryChange(index, event) {
     const file = event.target.files[0];
 
@@ -81,9 +113,16 @@ function EventEditor({ successLoading }) {
       const reader = new FileReader();
       reader.onloadend = () => {
         const imageData = reader.result;
+
+        // Update the base64 representation state
         const updatedGalleryUrls = [...eventData.eventGalleryUrls];
         updatedGalleryUrls[index] = imageData;
         setEventData({ ...eventData, eventGalleryUrls: updatedGalleryUrls });
+
+        // Update the file state
+        const updatedGalleryFiles = { ...galleryFiles };
+        updatedGalleryFiles[`gallery${index + 1}File`] = file;
+        setGalleryFiles(updatedGalleryFiles);
       };
       reader.readAsDataURL(file);
     }
@@ -133,6 +172,10 @@ function EventEditor({ successLoading }) {
         modalOpen={loadingIsVisible}
         message={"Uploading, please wait"}
       />
+
+      {/* <button className="button btn-spec" onClick={successLoading}>
+        Notification Tester
+      </button> */}
 
       <section className="editor-body flex-row justify">
         <form className="flex-row">

@@ -2,8 +2,15 @@ import React from "react";
 import DaysCounter from "./DaysCounter";
 import { useEffect, useState } from "react";
 import DataService from "../services/dataService";
+import DeleteEvent from "./DeleteEvent";
 
-function EventCard({ eventTitle, eventDate, eventTime, id }) {
+function EventCard({
+  eventTitle,
+  eventDate,
+  eventTime,
+  id,
+  handleEventUpdate,
+}) {
   const [eventImages, setEventImages] = useState([]);
 
   useEffect(() => {
@@ -40,6 +47,7 @@ function EventCard({ eventTitle, eventDate, eventTime, id }) {
           <DaysCounter date={eventDate} />
         </div>
       </figcaption>
+      <DeleteEvent handleEventUpdate={handleEventUpdate} id={id} />
     </figure>
   );
 }

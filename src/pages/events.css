@@ -6,6 +6,7 @@ main.events-section {
   main.events-section div.page-title {
     padding-bottom: 1rem;
     border-bottom: 0.0125rem solid var(--space-cadet);
+    justify-content: space-between;
   }
   main.events-section section.events-dashboard {
     padding: 2rem;
@@ -20,6 +21,7 @@ main.events-section {
     background-color: var(--bg-col);
     border: 1px solid var(--space-cadet);
     border-radius: 10px;
+    position: relative;
   }
   main.events-section section.events-dashboard div.event-card-container figure.event-card img {
     -o-object-fit: cover;
