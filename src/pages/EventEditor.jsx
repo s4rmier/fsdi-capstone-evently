@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import EventInvitation from "../components/EventInvitation";
 import DataService from "../services/dataService";
 import LoadingModal from "../components/LoadingModal";
+import DataContext from "../../store/dataContext";
 
-function EventEditor({ successLoading }) {
+function EventEditor() {
   const navigate = useNavigate();
+  const { successLoading, errorLoading } = useContext(DataContext);
+
   const [eventData, setEventData] = useState({
     eventTitle: "",
     eventDescription: "",
@@ -54,6 +57,7 @@ function EventEditor({ successLoading }) {
       }
     } catch (error) {
       console.error("Error submitting the form:", error);
+      errorLoading();
       setLoadingIsVisible(false);
     }
   }
@@ -81,21 +85,6 @@ function EventEditor({ successLoading }) {
     let { name } = event.target;
     setEventData({ ...eventData, [name]: value });
   }
-
-  // function handleGalleryChange(index, event) {
-  //   const file = event.target.files[0];
-
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => {
-  //       const imageData = reader.result;
-  //       const updatedGalleryUrls = [...eventData.eventGalleryUrls];
-  //       updatedGalleryUrls[index] = imageData;
-  //       setEventData({ ...eventData, eventGalleryUrls: updatedGalleryUrls });
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // } *Old code to fallback incase below didnt work*
 
   function handleGalleryChange(index, event) {
     const file = event.target.files[0];

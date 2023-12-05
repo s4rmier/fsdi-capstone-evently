@@ -1,27 +1,24 @@
-import { useState } from "react";
-
+import { useContext, useState } from "react";
 import DataService from "../services/dataService";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import DataContext from "../../store/dataContext";
 
 export default function DeleteEvent({ id, handleEventUpdate }) {
   const [confirmDelete, setConfirmDelete] = useState(false);
 
-  const successLoading = () => toast("Deleted Successfully");
-  const errorLoading = () => toast("Error communicating with the server");
+  const { successLoading, errorLoading } = useContext(DataContext);
 
   async function submitDeleteRequest() {
     try {
       const response = await DataService.deleteEvent(id);
       if (response.status === 204) {
         handleEventUpdate();
-        successLoading();
+        successLoading("Deleted");
       } else {
         handleEventUpdate();
         errorLoading();
       }
     } catch {
-      console.log(error);
+      errorLoading();
     }
   }
   return (
