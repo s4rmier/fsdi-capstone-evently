@@ -59,7 +59,6 @@ function EventEditor({ successLoading }) {
   }
 
   async function uploadImages(eventId) {
-    // in series
     if (eventImageFiles.eventCover) {
       await DataService.uploadImage(eventId, eventImageFiles.eventCover, 1);
     }
@@ -67,20 +66,12 @@ function EventEditor({ successLoading }) {
       await DataService.uploadImage(eventId, eventImageFiles.eventThumbnail, 2);
     }
 
-    // for
     for (let i = 0; i < eventData.eventGalleryUrls.length; i++) {
       const file = galleryFiles[`gallery${i + 1}File`];
       if (eventData.eventGalleryUrls[i] && file) {
-        await DataService.uploadImage(
-          eventId,
-          file,
-          3 // Set image type as 3 for all gallery images
-        );
-        console.log("Successful gallery upload: ", i);
+        await DataService.uploadImage(eventId, file, 3);
       }
     }
-    // in parallel
-    // promise.all([a, b])
   }
 
   // Form Related
@@ -172,10 +163,6 @@ function EventEditor({ successLoading }) {
         modalOpen={loadingIsVisible}
         message={"Uploading, please wait"}
       />
-
-      {/* <button className="button btn-spec" onClick={successLoading}>
-        Notification Tester
-      </button> */}
 
       <section className="editor-body flex-row justify">
         <form className="flex-row">
