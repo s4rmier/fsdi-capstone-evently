@@ -29,7 +29,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/events" element={<Events />} />
             <Route path="/events/new" element={<EventEditor />} />
-            <Route path="/events/:id" element={<EventDetailsPage />} />
+            <Route path="/events/editor/:id" element={<EventDetailsPage />} />
           </Routes>
 
           <Footer />

@@ -12,7 +12,6 @@ class DataService {
     const response = await axios.get(
       this.serverURL + `/api/eventImage/${id}/images`
     );
-    // console.log("load event image", response.data);
     return response.data;
   }
 

@@ -13,45 +13,52 @@ function EventCard({
   handleEventUpdate,
 }) {
   const [eventImages, setEventImages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getImage();
+    // getImage();
+    loadImage();
   }, []);
 
-  async function getImage() {
+  async function loadImage() {
     try {
       let images = await DataService.loadEventImage(id);
       setEventImages(images);
+      setLoading(false);
     } catch (error) {
       console.error("Error loading event images:", error);
+      setLoading(false);
     }
   }
 
   function getAssignedImg(imgtype) {
-    if (eventImages.length > 0) {
-      const foundImage = eventImages.find((image) => image.imgtype === imgtype);
-      return foundImage ? foundImage.image : null;
-    } else {
-      return null;
-    }
+    const foundImage = eventImages.find((image) => image.imgtype === imgtype);
+    return foundImage ? foundImage.image : null;
   }
 
+  function formatDate(dateString) {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  }
+
+  const formattedDate = formatDate(eventDate);
+
   return (
-    // <Link to={`/events/${id}`}>
-    <figure className="event-card flex-col">
-      <img src={getAssignedImg(1)} alt="" />
-      <DeleteEvent handleEventUpdate={handleEventUpdate} id={id} />
-      <figcaption className="flex-col">
-        <h3>{eventTitle}</h3>
-        <div className="event-date flex-row">
-          <p>
-            <b>Date</b>: {eventDate} | <b>Time</b>: {eventTime}
-          </p>
-          <DaysCounter date={eventDate} />
-        </div>
-      </figcaption>
-    </figure>
-    // </Link>
+    <Link to={`/events/editor/${id}`}>
+      <figure className="event-card flex-col">
+        <img src={getAssignedImg(1)} alt="" />
+        <DeleteEvent handleEventUpdate={handleEventUpdate} id={id} />
+        <figcaption className="flex-col">
+          <h3>{eventTitle}</h3>
+          <div className="event-date flex-row">
+            <p>
+              <b>Date</b>: {formattedDate} | <b>Time</b>: {eventTime}
+            </p>
+            <DaysCounter date={eventDate} />
+          </div>
+        </figcaption>
+      </figure>
+    </Link>
   );
 }
 
