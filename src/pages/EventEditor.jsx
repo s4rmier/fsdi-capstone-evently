@@ -1,13 +1,92 @@
-import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 import EventInvitation from "../components/EventInvitation";
 import DataService from "../services/dataService";
 import LoadingModal from "../components/LoadingModal";
 import DataContext from "../../store/dataContext";
+import DeleteEvent from "../components/DeleteEvent";
 
 function EventEditor() {
   const navigate = useNavigate();
   const { successLoading, errorLoading } = useContext(DataContext);
+  const [loadingIsVisible, setLoadingIsVisible] = useState(false);
+  const { eventId } = useParams();
+
+  //  Logic block for checking whether user is creating a new event or editing an existing event
+  const [editingEvent, setEditingEvent] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    retriveData();
+  }, [location.pathname, eventId]);
+
+  async function retriveData() {
+    const isEditing = location.pathname.includes("/editor/");
+
+    if (isEditing) {
+      setEditingEvent(true);
+      if (eventId) {
+        await getEventData();
+        getEventImages();
+      }
+    } else {
+      null;
+    }
+  }
+
+  async function getEventData() {
+    try {
+      setLoadingIsVisible(true);
+      const retrievedEventData = await DataService.getEventByID(eventId);
+      if (retrievedEventData) {
+        setEventData({
+          eventTitle: retrievedEventData.eventTitle,
+          eventDescription: retrievedEventData.eventDescription,
+          eventDate: retrievedEventData.eventDate,
+          eventTime: retrievedEventData.eventTime,
+          eventAddress: retrievedEventData.eventAddress,
+          _id: retrievedEventData.id,
+          eventGalleryUrls: ["", "", "", ""],
+          eventThumbnail: "",
+          eventCover: "",
+        });
+        // console.log("Event Retrieved: ", retrievedEventData);
+        setLoadingIsVisible(false);
+      }
+    } catch (error) {
+      setLoadingIsVisible(false);
+      console.log(error);
+    }
+  }
+
+  async function getEventImages() {
+    try {
+      // console.log(eventData);
+
+      setLoadingIsVisible(true);
+      const retrievedEventImages = await DataService.loadEventImage(eventId);
+      if (retrievedEventImages) {
+        setEventData((currentData) => ({
+          ...currentData,
+          eventGalleryUrls: [
+            retrievedEventImages[2].image,
+            retrievedEventImages[3].image,
+            retrievedEventImages[4].image,
+            retrievedEventImages[5].image,
+          ],
+          eventThumbnail: retrievedEventImages[0].image,
+          eventCover: retrievedEventImages[1].image,
+        }));
+        // console.log("Event Images Retrieved: ", retrievedEventImages);
+        setLoadingIsVisible(false);
+      }
+    } catch (error) {
+      setLoadingIsVisible(false);
+      console.log(error);
+    }
+  }
+
+  // Form data
 
   const [eventData, setEventData] = useState({
     eventTitle: "",
@@ -34,8 +113,6 @@ function EventEditor() {
     gallery4File: null,
   });
 
-  const [loadingIsVisible, setLoadingIsVisible] = useState(false);
-
   // Sending POST request to save the entry to the database
 
   async function submitEvent(event, eventData) {
@@ -45,7 +122,7 @@ function EventEditor() {
       setLoadingIsVisible(true);
       const response = await DataService.postEvent(eventData);
       if (response.status === 201) {
-        console.log(response.data);
+        // console.log(response.data);
         uploadImages(response.data.id);
         successLoading();
         clearForm();
@@ -78,7 +155,7 @@ function EventEditor() {
     }
   }
 
-  // Form Related
+  // Capturing user input
 
   function handleInputChange(event) {
     let { value } = event.target;
@@ -142,15 +219,23 @@ function EventEditor() {
   }
 
   return (
-    <main className="event-editor container">
-      <div className="page-title">
-        <h1 className="main-headline">Event Editor</h1>
-        <p>Update, modify, or delete your event</p>
+    <main className="event-editor container flex-col">
+      <div className="page-title flex-row align">
+        <div>
+          <h1 className="main-headline">Event Editor</h1>
+          <p>Update, modify, or delete your event</p>
+        </div>
+
+        <div className="event-control-panel">
+          {editingEvent && <DeleteEvent id={eventId} />}
+        </div>
       </div>
 
       <LoadingModal
         modalOpen={loadingIsVisible}
-        message={"Uploading, please wait"}
+        message={
+          editingEvent ? "Updating, please wait" : "Uploading, please wait"
+        }
       />
 
       <section className="editor-body flex-row justify">
@@ -272,7 +357,7 @@ function EventEditor() {
                 type="submit"
                 className="button btn-spec"
               >
-                Save
+                {editingEvent ? "Update" : "Save"}
               </button>
             </div>
           </div>

@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+// This component expects 2 props, a state variable to manage open/close, and a message like "Loading Please Wait"
+
 function LoadingModal({ modalOpen, message }) {
   useEffect(() => {
     document.body.style.overflow = modalOpen ? "hidden" : "auto";

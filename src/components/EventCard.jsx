@@ -2,21 +2,13 @@ import React from "react";
 import DaysCounter from "./DaysCounter";
 import { useEffect, useState } from "react";
 import DataService from "../services/dataService";
-import DeleteEvent from "./DeleteEvent";
 import { Link } from "react-router-dom";
 
-function EventCard({
-  eventTitle,
-  eventDate,
-  eventTime,
-  id,
-  handleEventUpdate,
-}) {
+function EventCard({ eventTitle, eventDate, eventTime, id }) {
   const [eventImages, setEventImages] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // getImage();
     loadImage();
   }, []);
 
@@ -47,7 +39,6 @@ function EventCard({
     <Link to={`/events/editor/${id}`}>
       <figure className="event-card flex-col">
         <img src={getAssignedImg(1)} alt="" />
-        <DeleteEvent handleEventUpdate={handleEventUpdate} id={id} />
         <figcaption className="flex-col">
           <h3>{eventTitle}</h3>
           <div className="event-date flex-row">

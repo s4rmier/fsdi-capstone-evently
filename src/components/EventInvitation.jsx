@@ -12,7 +12,7 @@ function EventInvitation({
 }) {
   const placeHolderR = "/placeholder-r.jpg";
   const placeHolderS = "/placeholder-s.jpg";
-
+  // console.log(eventGalleryUrls);
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     const parsedDate = new Date(dateString);

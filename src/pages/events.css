@@ -4,6 +4,7 @@ main.events-section {
 
 @media screen and (min-width: 960px) {
   main.events-section div.page-title {
+    width: 100%;
     padding-bottom: 1rem;
     border-bottom: 0.0125rem solid var(--space-cadet);
     justify-content: space-between;
@@ -22,6 +23,7 @@ main.events-section {
     border: 1px solid var(--space-cadet);
     border-radius: 10px;
     position: relative;
+    min-height: 16.5rem;
   }
   main.events-section section.events-dashboard div.event-card-container figure.event-card img {
     -o-object-fit: cover;
@@ -45,12 +47,14 @@ main.events-section {
     font-size: 0.75rem;
   }
   main.event-editor {
+    position: relative;
     min-height: 80vh;
     padding: 2rem 0rem 0rem;
   }
   main.event-editor div.page-title {
     padding-bottom: 1rem;
     border-bottom: 0.0125rem solid var(--space-cadet);
+    justify-content: space-between;
   }
   main.event-editor section.editor-body {
     width: 100%;

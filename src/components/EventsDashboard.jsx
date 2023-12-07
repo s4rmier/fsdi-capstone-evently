@@ -14,10 +14,6 @@ function EventsDashboard() {
     setDashboardContent(events);
   }
 
-  const handleEventUpdate = () => {
-    loadData();
-  };
-
   // UI Related
 
   let emptyDashboard = (
@@ -27,11 +23,7 @@ function EventsDashboard() {
   );
 
   let notEmptyDashboard = dashboardContent.map((eventItem, index) => (
-    <EventCard
-      handleEventUpdate={handleEventUpdate}
-      key={index}
-      {...eventItem}
-    />
+    <EventCard key={index} {...eventItem} />
   ));
 
   return (

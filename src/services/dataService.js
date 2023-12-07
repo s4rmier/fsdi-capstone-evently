@@ -8,6 +8,11 @@ class DataService {
     return response.data;
   }
 
+  async getEventByID(id) {
+    const response = await axios.get(this.serverURL + `/api/event/${id}`);
+    return response.data;
+  }
+
   async loadEventImage(id) {
     const response = await axios.get(
       this.serverURL + `/api/eventImage/${id}/images`
