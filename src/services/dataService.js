@@ -52,8 +52,29 @@ class DataService {
   }
 
   async deleteEvent(id) {
-    const response = await axios.delete(this.serverURL + "/api/event/" + id);
+    const response = await axios.delete(this.serverURL + `/api/event/${id}/`);
     return response;
+  }
+
+  async deleteImgByImgID(id) {
+    const response = await axios.delete(
+      this.serverURL + `/api/eventImage/${id}`
+    );
+    return response;
+  }
+
+  async updateEventByID(id, updatedData) {
+    try {
+      const response = await axios.put(
+        this.serverURL + `/api/event/${id}/`,
+        updatedData
+      );
+      console.log("Updated successfully: ", response.data);
+      return response;
+    } catch {
+      console.error("Error updating data: ", error);
+      throw new Error("Failed to update data");
+    }
   }
 }
 export default new DataService();

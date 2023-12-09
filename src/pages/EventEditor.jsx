@@ -12,6 +12,50 @@ function EventEditor() {
   const [loadingIsVisible, setLoadingIsVisible] = useState(false);
   const { eventId } = useParams();
 
+  // Form data
+
+  const [eventData, setEventData] = useState({
+    eventTitle: "",
+    eventDescription: "",
+    eventDate: "",
+    eventTime: "",
+    eventAddress: "",
+    eventGalleryUrls: ["", "", "", ""],
+    eventThumbnail: "",
+    eventCover: "",
+    userID: "",
+    _id: "",
+  });
+
+  const [eventImageFiles, setEventImageFiles] = useState({
+    eventCover: "",
+    eventThumbnail: "",
+  });
+
+  const [galleryFiles, setGalleryFiles] = useState({
+    gallery1File: null,
+    gallery2File: null,
+    gallery3File: null,
+    gallery4File: null,
+  });
+
+  const [galleryImgId, setGalleryImgId] = useState([]);
+
+  function clearForm() {
+    setEventData({
+      eventTitle: "",
+      eventDescription: "",
+      eventDate: "",
+      eventTime: "",
+      eventAddress: "",
+      eventGalleryUrls: ["", "", "", ""],
+      eventThumbnail: "",
+      eventCover: "",
+      userID: "",
+      _id: "",
+    });
+  }
+
   //  Logic block for checking whether user is creating a new event or editing an existing event
   const [editingEvent, setEditingEvent] = useState(false);
   const location = useLocation();
@@ -29,8 +73,6 @@ function EventEditor() {
         await getEventData();
         getEventImages();
       }
-    } else {
-      null;
     }
   }
 
@@ -77,6 +119,15 @@ function EventEditor() {
           eventThumbnail: retrievedEventImages[0].image,
           eventCover: retrievedEventImages[1].image,
         }));
+
+        let retreivedImgIds = [];
+        retrievedEventImages.forEach((eventImg) => {
+          retreivedImgIds.push(eventImg.id);
+        });
+
+        setGalleryImgId((prev) => retreivedImgIds);
+        // console.log(galleryImgId);
+
         // console.log("Event Images Retrieved: ", retrievedEventImages);
         setLoadingIsVisible(false);
       }
@@ -86,32 +137,29 @@ function EventEditor() {
     }
   }
 
-  // Form data
+  // PUT Request block when user isEditing an existing event
+  async function updateEventData(event, id, updatedData) {
+    event.preventDefault();
 
-  const [eventData, setEventData] = useState({
-    eventTitle: "",
-    eventDescription: "",
-    eventDate: "",
-    eventTime: "",
-    eventAddress: "",
-    eventGalleryUrls: ["", "", "", ""],
-    eventThumbnail: "",
-    eventCover: "",
-    userID: "",
-    _id: "",
-  });
-
-  const [eventImageFiles, setEventImageFiles] = useState({
-    eventCover: "",
-    eventThumbnail: "",
-  });
-
-  const [galleryFiles, setGalleryFiles] = useState({
-    gallery1File: null,
-    gallery2File: null,
-    gallery3File: null,
-    gallery4File: null,
-  });
+    try {
+      setLoadingIsVisible(true);
+      const response = await DataService.updateEventByID(id, updatedData);
+      if (response.status === 200) {
+        successLoading();
+        clearForm();
+        setLoadingIsVisible(false);
+        navigate("/events");
+      } else {
+        console.error("Error updating event. Response:", response);
+        setLoadingIsVisible(false);
+        errorLoading();
+      }
+    } catch (error) {
+      console.log("Error updating event:", error);
+      errorLoading();
+      setLoadingIsVisible(false);
+    }
+  }
 
   // Sending POST request to save the entry to the database
 
@@ -201,21 +249,6 @@ function EventEditor() {
       };
       reader.readAsDataURL(file);
     }
-  }
-
-  function clearForm() {
-    setEventData({
-      eventTitle: "",
-      eventDescription: "",
-      eventDate: "",
-      eventTime: "",
-      eventAddress: "",
-      eventGalleryUrls: ["", "", "", ""],
-      eventThumbnail: "",
-      eventCover: "",
-      userID: "",
-      _id: "",
-    });
   }
 
   return (
@@ -353,7 +386,11 @@ function EventEditor() {
               </Link>
 
               <button
-                onClick={(event) => submitEvent(event, eventData)}
+                onClick={
+                  editingEvent
+                    ? (event) => updateEventData(event, eventId, eventData)
+                    : (event) => submitEvent(event, eventData)
+                }
                 type="submit"
                 className="button btn-spec"
               >
