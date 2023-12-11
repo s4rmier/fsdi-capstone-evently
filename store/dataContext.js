@@ -4,6 +4,7 @@ const DataContext = createContext({
   user: {},
   errorLoading: () => {},
   successLoading: () => {},
+  warningNotice: () => {},
 });
 
 export default DataContext;

@@ -10,6 +10,10 @@ export default function GlobalState(props) {
     toast.success(message || "Submitted Successfully");
   });
 
+  const warningNotice = useCallback((message) => {
+    toast.warning(message || "Warning");
+  });
+
   const errorLoading = useCallback((message) =>
     toast.error(message || "Error communicating with the server")
   );
@@ -20,6 +24,7 @@ export default function GlobalState(props) {
         user: user,
         successLoading: successLoading,
         errorLoading: errorLoading,
+        warningNotice: warningNotice,
       }}
     >
       {props.children}

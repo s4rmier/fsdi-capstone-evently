@@ -11,6 +11,7 @@ function EventEditor() {
   const { successLoading, errorLoading } = useContext(DataContext);
   const [loadingIsVisible, setLoadingIsVisible] = useState(false);
   const { eventId } = useParams();
+  const [isFromValid, setIsFormValid] = useState(false);
 
   // Form data
 
@@ -106,7 +107,7 @@ function EventEditor() {
       }
     } catch (error) {
       setLoadingIsVisible(false);
-      console.log(error);
+      // console.log(error);
     }
   }
 
@@ -137,14 +138,14 @@ function EventEditor() {
         });
 
         setGalleryImgId((prev) => retreivedImgIds);
-        console.log(galleryImgId);
+        // console.log(galleryImgId);
 
         // console.log("Event Images Retrieved: ", retrievedEventImages);
         setLoadingIsVisible(false);
       }
     } catch (error) {
       setLoadingIsVisible(false);
-      console.log(error);
+      // console.log(error);
     }
   }
 
@@ -162,12 +163,12 @@ function EventEditor() {
         setLoadingIsVisible(false);
         navigate("/events");
       } else {
-        console.error("Error updating event. Response:", response);
+        // console.error("Error updating event. Response:", response);
         setLoadingIsVisible(false);
         errorLoading();
       }
     } catch (error) {
-      console.log("Error updating event:", error);
+      // console.log("Error updating event:", error);
       errorLoading();
       setLoadingIsVisible(false);
     }
@@ -181,6 +182,7 @@ function EventEditor() {
         if (eventImageFiles.eventCover) {
           await DataService.uploadImage(eventId, eventImageFiles.eventCover, 1);
         }
+        successLoading("Updated Successfully!");
       }
 
       if (changedThumbnailImage && galleryImgId[1]) {
@@ -193,9 +195,11 @@ function EventEditor() {
             2
           );
         }
+        successLoading("Updated Successfully!");
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      errorLoading();
     }
   }
 
@@ -215,11 +219,11 @@ function EventEditor() {
         setLoadingIsVisible(false);
         navigate("/events");
       } else {
-        console.log(response.error);
+        // console.log(response.error);
         setLoadingIsVisible(false);
       }
     } catch (error) {
-      console.error("Error submitting the form:", error);
+      // console.error("Error submitting the form:", error);
       errorLoading();
       setLoadingIsVisible(false);
     }
@@ -330,7 +334,6 @@ function EventEditor() {
                 type="text"
                 maxLength={28}
                 placeholder="Enter event title (max 28 characters)"
-                required
               />
             </div>
 
@@ -342,7 +345,6 @@ function EventEditor() {
                 value={eventData.eventDate}
                 type="date"
                 id="eventDate"
-                required
               />
             </div>
 
@@ -354,7 +356,6 @@ function EventEditor() {
                 value={eventData.eventTime}
                 type="time"
                 id="eventTime"
-                required
               />
             </div>
 
@@ -369,7 +370,6 @@ function EventEditor() {
                 rows="7"
                 maxLength={256}
                 placeholder="Enter event description (max 256 characters)"
-                required
               ></textarea>
             </div>
           </div>
@@ -384,7 +384,6 @@ function EventEditor() {
                 type="text"
                 id="eventAddress"
                 placeholder="Enter the address for the event"
-                required
               />
             </div>
 
@@ -395,7 +394,6 @@ function EventEditor() {
                 onChange={(event) => handleFileInputChange(event, "eventCover")}
                 name="eventCoverFile"
                 accept="image/*"
-                required
               />
             </div>
 

@@ -12,6 +12,7 @@ export default function DeleteEvent({ id }) {
     try {
       const response = await DataService.deleteEvent(id);
       if (response.status === 204) {
+        setConfirmDelete(false);
         navigate("/events");
         successLoading("Deleted");
       } else {
@@ -22,6 +23,13 @@ export default function DeleteEvent({ id }) {
       errorLoading();
     }
   }
+
+  if (confirmDelete) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
   return (
     <>
       {confirmDelete && (
