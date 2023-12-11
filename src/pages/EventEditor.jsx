@@ -56,6 +56,15 @@ function EventEditor() {
     });
   }
 
+  const [changedCoverImage, setChangedCoverImage] = useState(false);
+  const [changedThumbnailImage, setChangedThumbnailImage] = useState(false);
+  const [changedGalleryImages, setChangedGalleryImages] = useState([
+    false,
+    false,
+    false,
+    false,
+  ]);
+
   //  Logic block for checking whether user is creating a new event or editing an existing event
   const [editingEvent, setEditingEvent] = useState(false);
   const location = useLocation();
@@ -107,7 +116,9 @@ function EventEditor() {
 
       setLoadingIsVisible(true);
       const retrievedEventImages = await DataService.loadEventImage(eventId);
+      // console.log("retrieved images: ", retrievedEventImages);
       if (retrievedEventImages) {
+        retrievedEventImages.sort((a, b) => a.imgtype - b.imgtype);
         setEventData((currentData) => ({
           ...currentData,
           eventGalleryUrls: [
@@ -116,8 +127,8 @@ function EventEditor() {
             retrievedEventImages[4].image,
             retrievedEventImages[5].image,
           ],
-          eventThumbnail: retrievedEventImages[0].image,
-          eventCover: retrievedEventImages[1].image,
+          eventCover: retrievedEventImages[0].image,
+          eventThumbnail: retrievedEventImages[1].image,
         }));
 
         let retreivedImgIds = [];
@@ -126,7 +137,7 @@ function EventEditor() {
         });
 
         setGalleryImgId((prev) => retreivedImgIds);
-        // console.log(galleryImgId);
+        console.log(galleryImgId);
 
         // console.log("Event Images Retrieved: ", retrievedEventImages);
         setLoadingIsVisible(false);
@@ -145,6 +156,7 @@ function EventEditor() {
       setLoadingIsVisible(true);
       const response = await DataService.updateEventByID(id, updatedData);
       if (response.status === 200) {
+        await updateEventImages();
         successLoading();
         clearForm();
         setLoadingIsVisible(false);
@@ -158,6 +170,32 @@ function EventEditor() {
       console.log("Error updating event:", error);
       errorLoading();
       setLoadingIsVisible(false);
+    }
+  }
+
+  async function updateEventImages() {
+    try {
+      if (changedCoverImage && galleryImgId[0]) {
+        console.log("Attempting to delete: ", galleryImgId[0]);
+        await DataService.deleteImgByImgID(galleryImgId[0]);
+        if (eventImageFiles.eventCover) {
+          await DataService.uploadImage(eventId, eventImageFiles.eventCover, 1);
+        }
+      }
+
+      if (changedThumbnailImage && galleryImgId[1]) {
+        console.log("Attempting to delete: ", galleryImgId[1]);
+        await DataService.deleteImgByImgID(galleryImgId[1]);
+        if (eventImageFiles.eventThumbnail) {
+          await DataService.uploadImage(
+            eventId,
+            eventImageFiles.eventThumbnail,
+            2
+          );
+        }
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -219,15 +257,17 @@ function EventEditor() {
       reader.onloadend = () => {
         const imageData = reader.result;
 
-        // Update the base64 representation state
         const updatedGalleryUrls = [...eventData.eventGalleryUrls];
         updatedGalleryUrls[index] = imageData;
         setEventData({ ...eventData, eventGalleryUrls: updatedGalleryUrls });
 
-        // Update the file state
         const updatedGalleryFiles = { ...galleryFiles };
         updatedGalleryFiles[`gallery${index + 1}File`] = file;
         setGalleryFiles(updatedGalleryFiles);
+
+        const changedGalleryImagesCopy = [...changedGalleryImages];
+        changedGalleryImagesCopy[index] = true;
+        setChangedGalleryImages(changedGalleryImagesCopy);
       };
       reader.readAsDataURL(file);
     }
@@ -235,6 +275,12 @@ function EventEditor() {
 
   function handleFileInputChange(event, fieldName) {
     const file = event.target.files[0];
+
+    if (fieldName === "eventThumbnail") {
+      setChangedThumbnailImage(true);
+    } else if (fieldName === "eventCover") {
+      setChangedCoverImage(true);
+    }
 
     setEventImageFiles({
       ...eventImageFiles,
