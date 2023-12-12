@@ -17,3 +17,89 @@
         // });
 
         // setGalleryImgId((prev) => retreivedImgIds);
+
+
+      // for (let i = 0; i < changedGalleryImages.length; i++) {
+      //   if (changedGalleryImages[i]) {
+      //     console.log("Gallery image at index", i, "has changed");
+
+      //     // Delete the existing image if it exists
+      //     if (galleryImgId[i + 2]) {
+      //       // Starting from index 2 in galleryImgId
+      //       console.log(
+      //         "Attempting to delete image with ID:",
+      //         galleryImgId[i + 2]
+      //       );
+      //       await DataService.deleteImgByImgID(galleryImgId[i + 2]);
+      //     }
+
+      //     // Upload the new image if it exists in galleryFiles
+      //     const file = galleryFiles[`gallery${i + 1}File`];
+      //     if (file) {
+      //       await DataService.uploadImage(eventId, file, 3);
+      //       console.log("Uploaded new image at index", i);
+      //     }
+
+      //     // Reset the changedGalleryImages flag for this index
+      //     const changedGalleryImagesCopy = [...changedGalleryImages];
+      //     changedGalleryImagesCopy[i] = false;
+      //     setChangedGalleryImages(changedGalleryImagesCopy);
+      //   }
+      // }
+
+const [coverImgId, setCoverImgId] = useState([]);
+const [thumbnailImgId, setThumbnailImgId] = useState([]);
+const [galleryImgIds, setGalleryImgIds] = useState([]);
+
+
+        setEventData((prev) => ({
+          ...prev,
+          eventCover: coverImages[0].image,
+          eventThumbnail: thumbnailImages[0].image,
+          eventGalleryUrls: [
+            galleryImages[0].image,
+            galleryImages[1].image,
+            galleryImages[2].image,
+            galleryImages[3].image,
+          ],
+        }));
+
+        const coverImages = retrievedEventImages.filter(
+          (image) => image.imgtype === 1
+        );
+        const thumbnailImages = retrievedEventImages.filter(
+          (image) => image.imgtype === 2
+        );
+        const galleryImages = retrievedEventImages.filter(
+          (image) => image.imgtype === 3
+        );
+
+        setCoverImgId(coverImages[0].id);
+        setThumbnailImgId(thumbnailImages[0].id);
+        setGalleryImgIds(galleryImages.map((image) => image.id));
+        setLoadingIsVisible(false);
+      
+
+
+      if (changedCoverImage) {
+        console.log("Attempting to delete: ", coverImgId[0]);
+        await DataService.deleteImgByImgID(coverImgId[0]);
+        if (eventImageFiles.eventCover) {
+          await DataService.uploadImage(eventId, eventImageFiles.eventCover, 1);
+        }
+        successLoading("Updated Successfully!");
+      }
+
+      if (changedThumbnailImage) {
+        console.log("Attempting to delete: ", thumbnailImgId[0]);
+        await DataService.deleteImgByImgID(thumbnailImgId[0]);
+        if (eventImageFiles.eventThumbnail) {
+          await DataService.uploadImage(
+            eventId,
+            eventImageFiles.eventThumbnail,
+            2
+          );
+        }
+        successLoading("Updated Successfully!");
+      }
+    

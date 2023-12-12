@@ -32,6 +32,12 @@ function EventEditor() {
     eventThumbnail: "",
   });
 
+  const [imageIDs, setImageIDs] = useState({
+    coverImgID: "",
+    thumbnailImgID: "",
+    galleryImgIDs: ["", "", "", ""],
+  });
+
   const [galleryFiles, setGalleryFiles] = useState({
     gallery1File: null,
     gallery2File: null,
@@ -63,10 +69,6 @@ function EventEditor() {
     false,
   ]);
 
-  const [coverImgId, setCoverImgId] = useState([]);
-  const [thumbnailImgId, setThumbnailImgId] = useState([]);
-  const [galleryImgIds, setGalleryImgIds] = useState([]);
-
   //  Logic block for checking whether user is creating a new event or editing an existing event
   const [editingEvent, setEditingEvent] = useState(false);
   const location = useLocation();
@@ -82,7 +84,7 @@ function EventEditor() {
       setEditingEvent(true);
       if (eventId) {
         await getEventData();
-        getEventImages();
+        await getEventImages();
       }
     }
   }
@@ -113,30 +115,18 @@ function EventEditor() {
   async function getEventImages() {
     try {
       setLoadingIsVisible(true);
-      const retrievedEventImages = await DataService.loadEventImage(eventId);
-      if (retrievedEventImages) {
-        const coverImages = retrievedEventImages.filter(
+      const retrievedImages = await DataService.loadEventImage(eventId);
+
+      if (retrievedImages) {
+        let coverImages = retrievedImages.filter(
           (image) => image.imgtype === 1
         );
-        const thumbnailImages = retrievedEventImages.filter(
+        let thumbnailImages = retrievedImages.filter(
           (image) => image.imgtype === 2
         );
-        const galleryImages = retrievedEventImages.filter(
+        let galleryImages = retrievedImages.filter(
           (image) => image.imgtype === 3
         );
-
-        console.log(galleryImages);
-
-        if (coverImages.length > 0) {
-          setCoverImgId(coverImages[0].id);
-        }
-        if (thumbnailImages.length > 0) {
-          setThumbnailImgId(thumbnailImages[0].id);
-        }
-
-        if (galleryImages.length > 0) {
-          setGalleryImgIds(galleryImages.map((image) => image.id));
-        }
 
         setEventData((prev) => ({
           ...prev,
@@ -150,8 +140,16 @@ function EventEditor() {
           ],
         }));
 
-        console.log("IDs", coverImgId, thumbnailImgId, galleryImgIds);
-
+        setImageIDs((prev) => ({
+          coverImgID: coverImages[0].id,
+          thumbnailImgID: thumbnailImages[0].id,
+          galleryImgIDs: [
+            galleryImages[0].id,
+            galleryImages[1].id,
+            galleryImages[2].id,
+            galleryImages[3].id,
+          ],
+        }));
         setLoadingIsVisible(false);
       }
     } catch (error) {
@@ -184,18 +182,17 @@ function EventEditor() {
 
   async function updateEventImages() {
     try {
-      if (changedCoverImage && galleryImgId[0]) {
-        console.log("Attempting to delete: ", galleryImgId[0]);
-        await DataService.deleteImgByImgID(galleryImgId[0]);
+      if (changedCoverImage) {
+        console.log("Attempting to delete: ", imageIDs.coverImgID);
+        await DataService.deleteImgByImgID(imageIDs.coverImgID);
         if (eventImageFiles.eventCover) {
           await DataService.uploadImage(eventId, eventImageFiles.eventCover, 1);
         }
-        successLoading("Updated Successfully!");
       }
 
-      if (changedThumbnailImage && galleryImgId[1]) {
-        console.log("Attempting to delete: ", galleryImgId[1]);
-        await DataService.deleteImgByImgID(galleryImgId[1]);
+      if (changedThumbnailImage) {
+        console.log("Attempting to delete: ", imageIDs.thumbnailImgID);
+        await DataService.deleteImgByImgID(imageIDs.thumbnailImgID);
         if (eventImageFiles.eventThumbnail) {
           await DataService.uploadImage(
             eventId,
@@ -203,31 +200,26 @@ function EventEditor() {
             2
           );
         }
-        successLoading("Updated Successfully!");
       }
 
       for (let i = 0; i < changedGalleryImages.length; i++) {
         if (changedGalleryImages[i]) {
           console.log("Gallery image at index", i, "has changed");
 
-          // Delete the existing image if it exists
-          if (galleryImgId[i + 2]) {
-            // Starting from index 2 in galleryImgId
+          if (imageIDs.galleryImgIDs[i]) {
             console.log(
               "Attempting to delete image with ID:",
-              galleryImgId[i + 2]
+              imageIDs.galleryImgIDs[i]
             );
-            await DataService.deleteImgByImgID(galleryImgId[i + 2]);
+            await DataService.deleteImgByImgID(imageIDs.galleryImgIDs[i]);
           }
 
-          // Upload the new image if it exists in galleryFiles
           const file = galleryFiles[`gallery${i + 1}File`];
           if (file) {
             await DataService.uploadImage(eventId, file, 3);
             console.log("Uploaded new image at index", i);
           }
 
-          // Reset the changedGalleryImages flag for this index
           const changedGalleryImagesCopy = [...changedGalleryImages];
           changedGalleryImagesCopy[i] = false;
           setChangedGalleryImages(changedGalleryImagesCopy);
