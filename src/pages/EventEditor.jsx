@@ -41,6 +41,8 @@ function EventEditor() {
   });
 
   const [galleryImgId, setGalleryImgId] = useState([]);
+  const [coverImgId, setCoverImgId] = useState([]);
+  const [thumbnailImgId, setThumbnailImgId] = useState([]);
 
   function clearForm() {
     setEventData({
@@ -119,25 +121,25 @@ function EventEditor() {
       const retrievedEventImages = await DataService.loadEventImage(eventId);
       // console.log("retrieved images: ", retrievedEventImages);
       if (retrievedEventImages) {
-        retrievedEventImages.sort((a, b) => a.imgtype - b.imgtype);
-        setEventData((currentData) => ({
-          ...currentData,
-          eventGalleryUrls: [
-            retrievedEventImages[2].image,
-            retrievedEventImages[3].image,
-            retrievedEventImages[4].image,
-            retrievedEventImages[5].image,
-          ],
-          eventCover: retrievedEventImages[0].image,
-          eventThumbnail: retrievedEventImages[1].image,
-        }));
+        // retrievedEventImages.sort((a, b) => a.imgtype - b.imgtype);
+        // setEventData((currentData) => ({
+        //   ...currentData,
+        //   eventGalleryUrls: [
+        //     retrievedEventImages[2].image,
+        //     retrievedEventImages[3].image,
+        //     retrievedEventImages[4].image,
+        //     retrievedEventImages[5].image,
+        //   ],
+        //   eventCover: retrievedEventImages[0].image,
+        //   eventThumbnail: retrievedEventImages[1].image,
+        // }));
 
         let retreivedImgIds = [];
         retrievedEventImages.forEach((eventImg) => {
           retreivedImgIds.push(eventImg.id);
         });
 
-        setGalleryImgId((prev) => retreivedImgIds);
+        // setGalleryImgId((prev) => retreivedImgIds);
         // console.log(galleryImgId);
 
         // console.log("Event Images Retrieved: ", retrievedEventImages);

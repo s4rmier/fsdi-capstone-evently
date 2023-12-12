@@ -20,6 +20,7 @@ export default function DeleteEvent({ id }) {
         errorLoading();
       }
     } catch {
+      setConfirmDelete(false);
       errorLoading();
     }
   }
