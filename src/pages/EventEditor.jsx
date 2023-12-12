@@ -11,7 +11,6 @@ function EventEditor() {
   const { successLoading, errorLoading } = useContext(DataContext);
   const [loadingIsVisible, setLoadingIsVisible] = useState(false);
   const { eventId } = useParams();
-  const [isFromValid, setIsFormValid] = useState(false);
 
   // Form data
 
@@ -40,10 +39,6 @@ function EventEditor() {
     gallery4File: null,
   });
 
-  const [galleryImgId, setGalleryImgId] = useState([]);
-  const [coverImgId, setCoverImgId] = useState([]);
-  const [thumbnailImgId, setThumbnailImgId] = useState([]);
-
   function clearForm() {
     setEventData({
       eventTitle: "",
@@ -67,6 +62,10 @@ function EventEditor() {
     false,
     false,
   ]);
+
+  const [coverImgId, setCoverImgId] = useState([]);
+  const [thumbnailImgId, setThumbnailImgId] = useState([]);
+  const [galleryImgIds, setGalleryImgIds] = useState([]);
 
   //  Logic block for checking whether user is creating a new event or editing an existing event
   const [editingEvent, setEditingEvent] = useState(false);
@@ -104,50 +103,59 @@ function EventEditor() {
           eventThumbnail: "",
           eventCover: "",
         });
-        // console.log("Event Retrieved: ", retrievedEventData);
         setLoadingIsVisible(false);
       }
     } catch (error) {
       setLoadingIsVisible(false);
-      // console.log(error);
     }
   }
 
   async function getEventImages() {
     try {
-      // console.log(eventData);
-
       setLoadingIsVisible(true);
       const retrievedEventImages = await DataService.loadEventImage(eventId);
-      // console.log("retrieved images: ", retrievedEventImages);
       if (retrievedEventImages) {
-        // retrievedEventImages.sort((a, b) => a.imgtype - b.imgtype);
-        // setEventData((currentData) => ({
-        //   ...currentData,
-        //   eventGalleryUrls: [
-        //     retrievedEventImages[2].image,
-        //     retrievedEventImages[3].image,
-        //     retrievedEventImages[4].image,
-        //     retrievedEventImages[5].image,
-        //   ],
-        //   eventCover: retrievedEventImages[0].image,
-        //   eventThumbnail: retrievedEventImages[1].image,
-        // }));
+        const coverImages = retrievedEventImages.filter(
+          (image) => image.imgtype === 1
+        );
+        const thumbnailImages = retrievedEventImages.filter(
+          (image) => image.imgtype === 2
+        );
+        const galleryImages = retrievedEventImages.filter(
+          (image) => image.imgtype === 3
+        );
 
-        let retreivedImgIds = [];
-        retrievedEventImages.forEach((eventImg) => {
-          retreivedImgIds.push(eventImg.id);
-        });
+        console.log(galleryImages);
 
-        // setGalleryImgId((prev) => retreivedImgIds);
-        // console.log(galleryImgId);
+        if (coverImages.length > 0) {
+          setCoverImgId(coverImages[0].id);
+        }
+        if (thumbnailImages.length > 0) {
+          setThumbnailImgId(thumbnailImages[0].id);
+        }
 
-        // console.log("Event Images Retrieved: ", retrievedEventImages);
+        if (galleryImages.length > 0) {
+          setGalleryImgIds(galleryImages.map((image) => image.id));
+        }
+
+        setEventData((prev) => ({
+          ...prev,
+          eventCover: coverImages[0].image,
+          eventThumbnail: thumbnailImages[0].image,
+          eventGalleryUrls: [
+            galleryImages[0].image,
+            galleryImages[1].image,
+            galleryImages[2].image,
+            galleryImages[3].image,
+          ],
+        }));
+
+        console.log("IDs", coverImgId, thumbnailImgId, galleryImgIds);
+
         setLoadingIsVisible(false);
       }
     } catch (error) {
       setLoadingIsVisible(false);
-      // console.log(error);
     }
   }
 
@@ -165,12 +173,10 @@ function EventEditor() {
         setLoadingIsVisible(false);
         navigate("/events");
       } else {
-        // console.error("Error updating event. Response:", response);
         setLoadingIsVisible(false);
         errorLoading();
       }
     } catch (error) {
-      // console.log("Error updating event:", error);
       errorLoading();
       setLoadingIsVisible(false);
     }
@@ -199,8 +205,35 @@ function EventEditor() {
         }
         successLoading("Updated Successfully!");
       }
+
+      for (let i = 0; i < changedGalleryImages.length; i++) {
+        if (changedGalleryImages[i]) {
+          console.log("Gallery image at index", i, "has changed");
+
+          // Delete the existing image if it exists
+          if (galleryImgId[i + 2]) {
+            // Starting from index 2 in galleryImgId
+            console.log(
+              "Attempting to delete image with ID:",
+              galleryImgId[i + 2]
+            );
+            await DataService.deleteImgByImgID(galleryImgId[i + 2]);
+          }
+
+          // Upload the new image if it exists in galleryFiles
+          const file = galleryFiles[`gallery${i + 1}File`];
+          if (file) {
+            await DataService.uploadImage(eventId, file, 3);
+            console.log("Uploaded new image at index", i);
+          }
+
+          // Reset the changedGalleryImages flag for this index
+          const changedGalleryImagesCopy = [...changedGalleryImages];
+          changedGalleryImagesCopy[i] = false;
+          setChangedGalleryImages(changedGalleryImagesCopy);
+        }
+      }
     } catch (error) {
-      // console.log(error);
       errorLoading();
     }
   }
@@ -214,18 +247,15 @@ function EventEditor() {
       setLoadingIsVisible(true);
       const response = await DataService.postEvent(eventData);
       if (response.status === 201) {
-        // console.log(response.data);
         uploadImages(response.data.id);
         successLoading();
         clearForm();
         setLoadingIsVisible(false);
         navigate("/events");
       } else {
-        // console.log(response.error);
         setLoadingIsVisible(false);
       }
     } catch (error) {
-      // console.error("Error submitting the form:", error);
       errorLoading();
       setLoadingIsVisible(false);
     }

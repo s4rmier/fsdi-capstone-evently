@@ -1,0 +1,19 @@
+// retrievedEventImages.sort((a, b) => a.imgtype - b.imgtype);
+        // setEventData((currentData) => ({
+        //   ...currentData,
+        //   eventCover: retrievedEventImages[0].image,
+        //   eventThumbnail: retrievedEventImages[1].image,
+        //   eventGalleryUrls: [
+        //     retrievedEventImages[2].image,
+        //     retrievedEventImages[3].image,
+        //     retrievedEventImages[4].image,
+        //     retrievedEventImages[5].image,
+        //   ],
+        // }));
+
+        // let retreivedImgIds = [];
+        // retrievedEventImages.forEach((eventImg) => {
+        //   retreivedImgIds.push(eventImg.id);
+        // });
+
+        // setGalleryImgId((prev) => retreivedImgIds);
