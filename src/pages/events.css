@@ -56,6 +56,9 @@ main.events-section {
     border-bottom: 0.0125rem solid var(--space-cadet);
     justify-content: space-between;
   }
+  main.event-editor div.page-title div.event-control-panel {
+    gap: 0.5rem;
+  }
   main.event-editor section.editor-body {
     width: 100%;
     padding: 2rem;

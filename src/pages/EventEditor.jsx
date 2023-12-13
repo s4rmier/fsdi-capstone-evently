@@ -23,6 +23,7 @@ function EventEditor() {
     eventGalleryUrls: ["", "", "", ""],
     eventThumbnail: "",
     eventCover: "",
+    isPublic: false,
     userID: "",
     _id: "",
   });
@@ -333,8 +334,13 @@ function EventEditor() {
           <p>Update, modify, or delete your event</p>
         </div>
 
-        <div className="event-control-panel">
+        <div className="event-control-panel flex-row align">
           {editingEvent && <DeleteEvent id={eventId} />}
+          {editingEvent && (
+            <Link to={`/events/invite/${eventId}`}>
+              <button className="button">Share</button>
+            </Link>
+          )}
         </div>
       </div>
 

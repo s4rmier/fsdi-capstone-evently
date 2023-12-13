@@ -10,6 +10,7 @@ import GlobalState from "../store/globalState";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SharedInvitation from "./pages/SharedInvitation";
 
 function App() {
   return (
@@ -29,6 +30,10 @@ function App() {
             <Route path="/events" element={<Events />} />
             <Route path="/events/new" element={<EventEditor />} />
             <Route path="/events/editor/:eventId" element={<EventEditor />} />
+            <Route
+              path="/events/invite/:eventId"
+              element={<SharedInvitation />}
+            />
           </Routes>
 
           <Footer />

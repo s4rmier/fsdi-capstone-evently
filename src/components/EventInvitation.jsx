@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import LoadingModal from "./LoadingModal";
 
 function EventInvitation({
   eventTitle,
@@ -9,10 +10,13 @@ function EventInvitation({
   eventGalleryUrls,
   eventThumbnail,
   eventCover,
+  isPublic,
+  eventId,
 }) {
+  const [loadingIsVisible, setLoadingIsVisible] = useState(false);
   const placeHolderR = "/placeholder-r.jpg";
   const placeHolderS = "/placeholder-s.jpg";
-  // console.log(eventGalleryUrls);
+
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     const parsedDate = new Date(dateString);
@@ -26,6 +30,10 @@ function EventInvitation({
       <div className="coverImg">
         <img src={eventCover || placeHolderR} alt="" />
       </div>
+      <LoadingModal
+        modalOpen={loadingIsVisible}
+        message={"Loading, please wait"}
+      />
 
       <div className="event-title flex-row">
         <img src={eventThumbnail || placeHolderS} alt="" />
