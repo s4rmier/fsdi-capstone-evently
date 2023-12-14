@@ -285,6 +285,93 @@ div.delete-confirmation-modal div.confirmation-modal-body div button:nth-child(1
        object-fit: cover;
     border: 0.5rem solid white;
   }
+  div#shared-event div.event-preview div.event-title div.title-box h1 {
+    font-family: var(--body-type);
+  }
+  div#shared-event div.event-preview div.event-description {
+    width: 80%;
+    margin: 0 auto 2rem;
+  }
+  div#shared-event div.event-preview div.event-description p {
+    font-family: var(--body-type);
+    font-weight: 500;
+  }
+  div#shared-event div.event-preview div.event-gallery {
+    display: grid;
+    margin: 0.5rem 0rem;
+    grid-template-areas: "img1 img1 img2" "img3 img4 img2";
+    gap: 0.75rem;
+    grid-template-rows: 260px 220px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  div#shared-event div.event-preview div.event-gallery img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    border-radius: 20px;
+  }
+  div#shared-event div.event-preview div.event-gallery img:nth-child(1) {
+    grid-area: img1;
+  }
+  div#shared-event div.event-preview div.event-gallery img:nth-child(2) {
+    grid-area: img2;
+  }
+  div#shared-event div.event-preview div.event-gallery img:nth-child(3) {
+    grid-area: img3;
+  }
+  div#shared-event div.event-preview div.event-gallery img:nth-child(4) {
+    grid-area: img4;
+  }
+  div#shared-event div.event-preview div.event-address {
+    margin: 2rem 0rem;
+    gap: 1rem;
+    flex-direction: row;
+  }
+  div#shared-event div.event-preview div.event-address iframe {
+    height: 400px;
+    width: 100%;
+    border-radius: 20px;
+  }
+  div#shared-event div.event-preview div.event-address b {
+    font-weight: 800;
+  }
+  div#shared-event div.event-preview div.event-address h2 {
+    font-weight: 600;
+  }
+  div#shared-event div.event-preview div.event-address img {
+    margin-top: 2rem;
+    padding: 1rem 0rem 0.5rem;
+    height: 300px;
+  }
+  div#shared-event div.event-preview div.event-rsvp {
+    margin-top: 2rem;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  div#shared-event div.event-preview div.event-rsvp h1 {
+    text-align: center;
+  }
+  div#shared-event div.event-preview div.event-rsvp form {
+    gap: 0.5rem;
+  }
+  div#shared-event div.event-preview div.event-rsvp form label {
+    margin-right: 0.5rem;
+    width: 180px;
+    text-wrap: nowrap;
+    text-align: right;
+    font-size: 1rem;
+  }
+  div#shared-event div.event-preview div.event-rsvp form input {
+    width: 260px;
+  }
+  div#shared-event div.event-preview div.event-rsvp form input.qty-input {
+    width: 80px;
+  }
+  div#shared-event div.event-preview div.event-rsvp form button.button {
+    margin: 1rem 0rem 2rem;
+    align-self: center;
+  }
 }
 @media screen and (max-width: 959px) {
   html {

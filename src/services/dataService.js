@@ -76,5 +76,22 @@ class DataService {
       throw new Error("Failed to update data");
     }
   }
+
+  async recordRSVP(rsvpData) {
+    try {
+      const response = await axios.post(
+        this.serverURL + `/api/eventRSVP/`,
+        rsvpData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 export default new DataService();

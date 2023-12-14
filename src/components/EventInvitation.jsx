@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import LoadingModal from "./LoadingModal";
+import DataService from "../services/dataService";
 
 function EventInvitation({
   eventTitle,
@@ -17,6 +18,13 @@ function EventInvitation({
   const placeHolderR = "/placeholder-r.jpg";
   const placeHolderS = "/placeholder-s.jpg";
 
+  const [RSVPData, setRSVPdata] = useState({
+    event: eventId,
+    name: "",
+    contact: "",
+    additionalGuests: "",
+  });
+
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     const parsedDate = new Date(dateString);
@@ -24,6 +32,27 @@ function EventInvitation({
   };
 
   const parsedEventDate = formatDate(eventDate);
+
+  function handleFormChange(event) {
+    let { value } = event.target;
+    let { name } = event.target;
+    setRSVPdata({ ...RSVPData, [name]: value });
+  }
+
+  function clearForm() {
+    setRSVPdata({
+      event: eventId,
+      name: "",
+      contact: "",
+      additionalGuests: "",
+    });
+  }
+
+  function handleFormSubmit(event) {
+    event.preventDefault();
+  }
+
+  async function submitRSVP(guestData) {}
 
   return (
     <div className="event-preview flex-col">
@@ -84,17 +113,39 @@ function EventInvitation({
         <form action="" className="flex-col">
           <div className="flex-row align">
             <label htmlFor="">Name : </label>
-            <input type="text" />
+            <input
+              name="name"
+              type="text"
+              onChange={(event) => handleFormChange(event)}
+              value={RSVPData.name}
+            />
           </div>
           <div className="flex-row align">
             <label htmlFor="">Contact # : </label>
-            <input type="number" />
+            <input
+              name="contact"
+              type="number"
+              onChange={(event) => handleFormChange(event)}
+              value={RSVPData.contact}
+            />
           </div>
           <div className="flex-row align">
             <label htmlFor="">Extra Guests? : </label>
-            <input type="number" className="qty-input" />
+            <input
+              name="additionalGuests"
+              type="number"
+              className="qty-input"
+              onChange={(event) => handleFormChange(event)}
+              value={RSVPData.additionalGuests}
+            />
           </div>
-          <button className="button btn-spec">RSVP</button>
+          <button
+            onClick={(event) => handleFormSubmit(event)}
+            type="submit"
+            className="button btn-spec"
+          >
+            Submit
+          </button>
         </form>
       </div>
     </div>

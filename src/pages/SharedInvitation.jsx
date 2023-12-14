@@ -46,6 +46,7 @@ function SharedInvitation() {
           eventGalleryUrls: ["", "", "", ""],
           eventThumbnail: "",
           eventCover: "",
+          isPublic: true,
           eventId: eventId,
         });
         setLoadingIsVisible(false);
