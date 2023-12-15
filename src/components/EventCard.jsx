@@ -6,11 +6,17 @@ import { Link } from "react-router-dom";
 
 function EventCard({ eventTitle, eventDate, eventTime, id }) {
   const [eventImages, setEventImages] = useState([]);
+  const [RSVPData, setRSVPData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    loadImage();
-  }, []);
+    loadData();
+  }, [id]);
+
+  async function loadData() {
+    await loadImage();
+    await loadRSVPData();
+  }
 
   async function loadImage() {
     try {
@@ -20,6 +26,15 @@ function EventCard({ eventTitle, eventDate, eventTime, id }) {
     } catch (error) {
       console.error("Error loading event images:", error);
       setLoading(false);
+    }
+  }
+
+  async function loadRSVPData() {
+    try {
+      let response = await DataService.getResponses(id);
+      setRSVPData(response);
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -36,21 +51,31 @@ function EventCard({ eventTitle, eventDate, eventTime, id }) {
   const formattedDate = formatDate(eventDate);
 
   return (
-    <Link to={`/events/editor/${id}`}>
-      <figure className="event-card flex-col">
-        <img src={getAssignedImg(1)} alt="" />
-        <figcaption className="flex-col">
-          <h3>{eventTitle}</h3>
-          <div className="event-date flex-row">
-            <p>
-              <b>Date</b>: {formattedDate} | <b>Time</b>: {eventTime}
-            </p>
-            <DaysCounter date={eventDate} />
-          </div>
-        </figcaption>
-      </figure>
-    </Link>
+    <figure className="event-card flex-col">
+      <img src={getAssignedImg(1)} alt="" />
+      <figcaption className="flex-col">
+        <h3>{eventTitle}</h3>
+        <div className="event-date flex-row">
+          <p>
+            <b>Date</b>: {formattedDate} | <b>Time</b>: {eventTime}
+          </p>
+          <DaysCounter date={eventDate} />
+        </div>
+      </figcaption>
+      <div className="card-panel flex-row align">
+        <div className="rsvpdata flex-row align">
+          <button className="button">RSVPs</button>
+          <h4>
+            <i className="fa-solid fa-square-check">
+              <span>{RSVPData.length || "0"}</span>
+            </i>
+          </h4>
+        </div>
+        <Link to={`/events/editor/${id}`}>
+          <button className="button btn-spec">View</button>
+        </Link>
+      </div>
+    </figure>
   );
 }
-
 export default EventCard;

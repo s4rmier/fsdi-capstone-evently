@@ -20,10 +20,31 @@ class DataService {
     return response.data;
   }
 
+  async getResponses(eventId) {
+    const response = await axios.get(
+      this.serverURL + `/api/eventRSVP/${eventId}/`
+    );
+
+    return response.data;
+  }
+
   async postEvent(eventData) {
     const response = await axios.post(
       this.serverURL + "/api/event/",
       eventData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response;
+  }
+
+  async recordRSVP(rsvpData) {
+    const response = await axios.post(
+      this.serverURL + "/api/eventRSVP/",
+      rsvpData,
       {
         headers: {
           "Content-Type": "application/json",
@@ -74,34 +95,6 @@ class DataService {
     } catch {
       console.error("Error updating data: ", error);
       throw new Error("Failed to update data");
-    }
-  }
-
-  async recordRSVP(rsvpData) {
-    try {
-      const response = await axios.post(
-        this.serverURL + `/api/eventRSVP/`,
-        rsvpData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async getResponses(eventId) {
-    try {
-      const response = await axios.get(
-        this.serverURL + `/api/eventRSVP/${eventId}`
-      );
-      return response;
-    } catch (error) {
-      console.log(error);
     }
   }
 }

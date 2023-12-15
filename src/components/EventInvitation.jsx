@@ -24,7 +24,7 @@ function EventInvitation({
     event: eventId,
     name: "",
     contact: "",
-    additional_guests: "",
+    guests: "",
   });
 
   const { successLoading, errorLoading } = useContext(DataContext);
@@ -58,7 +58,7 @@ function EventInvitation({
       event: eventId,
       name: "",
       contact: "",
-      additional_guests: "",
+      guests: "",
     });
   }
 
@@ -66,11 +66,7 @@ function EventInvitation({
     event.preventDefault();
 
     if (isPublic) {
-      setLoadingIsVisible(true);
       await submitRSVP(RSVPData);
-      clearForm();
-      successLoading("Response received!");
-      setHasResponded(true);
     } else {
       null;
     }
@@ -80,8 +76,17 @@ function EventInvitation({
   async function submitRSVP(guestData) {
     try {
       const response = await DataService.recordRSVP(guestData);
+      setLoadingIsVisible(true);
+      if (response.status === 201) {
+        successLoading("Response received!");
+        clearForm();
+        setLoadingIsVisible(false);
+        setHasResponded(true);
+      }
+      console.log(response);
     } catch (error) {
       errorLoading();
+      setLoadingIsVisible(false);
       console.log(error);
     }
   }
@@ -167,11 +172,11 @@ function EventInvitation({
             <div className="flex-row align">
               <label htmlFor="">Extra Guests? : </label>
               <input
-                name="additional_guests"
+                name="guests"
                 type="number"
                 className="qty-input"
                 onChange={(event) => handleFormChange(event)}
-                value={RSVPData.additional_guests}
+                value={RSVPData.guests}
               />
             </div>
             <button
