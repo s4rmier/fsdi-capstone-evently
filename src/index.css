@@ -301,7 +301,7 @@ div.delete-confirmation-modal div.confirmation-modal-body div button:nth-child(1
     margin: 0.5rem 0rem;
     grid-template-areas: "img1 img1 img2" "img3 img4 img2";
     gap: 0.75rem;
-    grid-template-rows: 260px 220px;
+    grid-template-rows: 340px 220px;
     grid-template-columns: 1fr 1fr 1fr;
   }
   div#shared-event div.event-preview div.event-gallery img {
@@ -371,6 +371,12 @@ div.delete-confirmation-modal div.confirmation-modal-body div button:nth-child(1
   div#shared-event div.event-preview div.event-rsvp form button.button {
     margin: 1rem 0rem 2rem;
     align-self: center;
+  }
+  div#shared-event div.event-preview .responseDiv {
+    width: 50%;
+    margin: 2rem auto;
+    display: flex;
+    gap: 2rem;
   }
 }
 @media screen and (max-width: 959px) {

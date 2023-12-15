@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import LoadingModal from "./LoadingModal";
 import DataService from "../services/dataService";
+import DataContext from "../../store/dataContext";
 
 function EventInvitation({
   eventTitle,
@@ -15,6 +16,7 @@ function EventInvitation({
   eventId,
 }) {
   const [loadingIsVisible, setLoadingIsVisible] = useState(false);
+  const [hasResponded, setHasResponded] = useState(false);
   const placeHolderR = "/placeholder-r.jpg";
   const placeHolderS = "/placeholder-s.jpg";
 
@@ -22,8 +24,20 @@ function EventInvitation({
     event: eventId,
     name: "",
     contact: "",
-    additionalGuests: "",
+    additional_guests: "",
   });
+
+  const { successLoading, errorLoading } = useContext(DataContext);
+
+  const responseDiv = (
+    <div className="flex-col align justify responseDiv">
+      <h2 className="main-headline">
+        Thank you, {RSVPData.name || "Anonymous Guest"}! We received your
+        response.
+      </h2>
+      <h3>We'll see you soon!</h3>
+    </div>
+  );
 
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -44,15 +58,33 @@ function EventInvitation({
       event: eventId,
       name: "",
       contact: "",
-      additionalGuests: "",
+      additional_guests: "",
     });
   }
 
-  function handleFormSubmit(event) {
+  async function handleFormSubmit(event) {
     event.preventDefault();
+
+    if (isPublic) {
+      setLoadingIsVisible(true);
+      await submitRSVP(RSVPData);
+      clearForm();
+      successLoading("Response received!");
+      setHasResponded(true);
+    } else {
+      null;
+    }
+    setLoadingIsVisible(false);
   }
 
-  async function submitRSVP(guestData) {}
+  async function submitRSVP(guestData) {
+    try {
+      const response = await DataService.recordRSVP(guestData);
+    } catch (error) {
+      errorLoading();
+      console.log(error);
+    }
+  }
 
   return (
     <div className="event-preview flex-col">
@@ -108,46 +140,50 @@ function EventInvitation({
         </div>
       </div>
 
-      <div className="event-rsvp container flex-col">
-        <h1 className="main-headline">Let us know you're coming</h1>
-        <form action="" className="flex-col">
-          <div className="flex-row align">
-            <label htmlFor="">Name : </label>
-            <input
-              name="name"
-              type="text"
-              onChange={(event) => handleFormChange(event)}
-              value={RSVPData.name}
-            />
-          </div>
-          <div className="flex-row align">
-            <label htmlFor="">Contact # : </label>
-            <input
-              name="contact"
-              type="number"
-              onChange={(event) => handleFormChange(event)}
-              value={RSVPData.contact}
-            />
-          </div>
-          <div className="flex-row align">
-            <label htmlFor="">Extra Guests? : </label>
-            <input
-              name="additionalGuests"
-              type="number"
-              className="qty-input"
-              onChange={(event) => handleFormChange(event)}
-              value={RSVPData.additionalGuests}
-            />
-          </div>
-          <button
-            onClick={(event) => handleFormSubmit(event)}
-            type="submit"
-            className="button btn-spec"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
+      {hasResponded ? (
+        responseDiv
+      ) : (
+        <div className="event-rsvp container flex-col">
+          <h1 className="main-headline">Let us know you're coming</h1>
+          <form action="" className="flex-col">
+            <div className="flex-row align">
+              <label htmlFor="">Name : </label>
+              <input
+                name="name"
+                type="text"
+                onChange={(event) => handleFormChange(event)}
+                value={RSVPData.name}
+              />
+            </div>
+            <div className="flex-row align">
+              <label htmlFor="">Contact # : </label>
+              <input
+                name="contact"
+                type="number"
+                onChange={(event) => handleFormChange(event)}
+                value={RSVPData.contact}
+              />
+            </div>
+            <div className="flex-row align">
+              <label htmlFor="">Extra Guests? : </label>
+              <input
+                name="additional_guests"
+                type="number"
+                className="qty-input"
+                onChange={(event) => handleFormChange(event)}
+                value={RSVPData.additional_guests}
+              />
+            </div>
+            <button
+              onClick={(event) => handleFormSubmit(event)}
+              type="submit"
+              className="button btn-spec"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 }

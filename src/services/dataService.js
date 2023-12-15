@@ -93,5 +93,16 @@ class DataService {
       console.log(error);
     }
   }
+
+  async getResponses(eventId) {
+    try {
+      const response = await axios.get(
+        this.serverURL + `/api/eventRSVP/${eventId}`
+      );
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 export default new DataService();
