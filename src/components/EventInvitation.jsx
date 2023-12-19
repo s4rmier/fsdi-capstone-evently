@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import LoadingModal from "./LoadingModal";
 import DataService from "../services/dataService";
 import DataContext from "../../store/dataContext";
@@ -26,6 +26,13 @@ function EventInvitation({
     contact: "",
     guests: "",
   });
+
+  useEffect(() => {
+    setRSVPdata({
+      ...RSVPData,
+      event: eventId,
+    });
+  }, [eventId]);
 
   const { successLoading, errorLoading } = useContext(DataContext);
 
@@ -66,6 +73,7 @@ function EventInvitation({
     event.preventDefault();
 
     if (isPublic) {
+      console.log(RSVPData);
       await submitRSVP(RSVPData);
     } else {
       null;

@@ -171,7 +171,7 @@ p.not-important {
 }
 
 button.button {
-  padding: 0.4rem 0.75rem;
+  padding: 0.35rem 0.75rem;
   border-radius: 10px;
   font-family: var(--link-type);
   background: var(--bg-col);
@@ -377,6 +377,52 @@ div.delete-confirmation-modal div.confirmation-modal-body div button:nth-child(1
     margin: 2rem auto;
     display: flex;
     gap: 2rem;
+  }
+  div#rsvp-modal {
+    position: fixed;
+    z-index: 12323;
+    width: 50%;
+    height: 75vh;
+    top: 12.5%;
+    left: 25%;
+    background-color: rgba(243, 239, 245, 0.75);
+    -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+    border-radius: 20px;
+    padding: 2rem;
+    gap: 1rem;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  div#rsvp-modal div.modal-title {
+    padding-bottom: 1rem;
+    border-bottom: 0.0125rem solid var(--space-cadet);
+    justify-content: space-between;
+  }
+  div#rsvp-modal div.modal-title i.fa-users {
+    margin: 0rem 1rem;
+  }
+  div#rsvp-modal div.modal-title i.fa-users span {
+    margin-left: 0.5rem;
+  }
+  div#rsvp-modal div.guest-info div {
+    gap: 0rem 1rem;
+  }
+  div#rsvp-modal div.guest-info div i {
+    font-size: 0.85rem;
+  }
+  div#rsvp-modal div.guest-info div i span {
+    font-weight: 200;
+  }
+  div#rsvp-modal div.guest-info div p {
+    font-size: 0.85rem;
+  }
+  div#rsvp-modal div.guest-info div p i span {
+    margin-left: 0.5rem;
+  }
+  div#rsvp-modal::-webkit-scrollbar {
+    display: none;
   }
 }
 @media screen and (max-width: 959px) {

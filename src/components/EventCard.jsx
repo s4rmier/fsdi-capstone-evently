@@ -3,11 +3,13 @@ import DaysCounter from "./DaysCounter";
 import { useEffect, useState } from "react";
 import DataService from "../services/dataService";
 import { Link } from "react-router-dom";
+import RSVPModal from "./RSVPModal";
 
 function EventCard({ eventTitle, eventDate, eventTime, id }) {
   const [eventImages, setEventImages] = useState([]);
   const [RSVPData, setRSVPData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isRSVPModalVisible, setIsRSVPModalVisible] = useState(false);
 
   useEffect(() => {
     loadData();
@@ -50,6 +52,12 @@ function EventCard({ eventTitle, eventDate, eventTime, id }) {
 
   const formattedDate = formatDate(eventDate);
 
+  let totalGuests = 0;
+
+  RSVPData.forEach((guest) => {
+    totalGuests += +guest.guests + 1;
+  });
+
   return (
     <figure className="event-card flex-col">
       <img src={getAssignedImg(1)} alt="" />
@@ -64,17 +72,31 @@ function EventCard({ eventTitle, eventDate, eventTime, id }) {
       </figcaption>
       <div className="card-panel flex-row align">
         <div className="rsvpdata flex-row align">
-          <button className="button">RSVPs</button>
-          <h4>
+          <button
+            onClick={() => setIsRSVPModalVisible(true)}
+            className="button"
+          >
+            RSVPs
+          </button>
+          <div className="rsvp-count flex-row align">
             <i className="fa-solid fa-square-check">
               <span>{RSVPData.length || "0"}</span>
             </i>
-          </h4>
+            <i className="fa-solid fa-users">
+              <span>{totalGuests}</span>
+            </i>
+          </div>
         </div>
         <Link to={`/events/editor/${id}`}>
           <button className="button btn-spec">View</button>
         </Link>
       </div>
+      <RSVPModal
+        clickHandler={() => setIsRSVPModalVisible(false)}
+        isVisible={isRSVPModalVisible}
+        RSVPData={RSVPData}
+        totalGuests={totalGuests}
+      />
     </figure>
   );
 }

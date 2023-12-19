@@ -35,6 +35,7 @@ main.events-section {
   main.events-section section.events-dashboard div.event-card-container figure.event-card figcaption {
     padding: 1rem;
     gap: 0.15rem;
+    min-height: 5rem;
   }
   main.events-section section.events-dashboard div.event-card-container figure.event-card figcaption h3 {
     font-size: 1rem;
@@ -66,11 +67,15 @@ main.events-section {
   main.events-section section.events-dashboard div.event-card-container figure.event-card div.card-panel div.rsvpdata button i {
     margin: 0rem 0.05rem 0rem 0.25rem;
   }
-  main.events-section section.events-dashboard div.event-card-container figure.event-card div.card-panel div.rsvpdata h4 {
+  main.events-section section.events-dashboard div.event-card-container figure.event-card div.card-panel div.rsvpdata div.rsvp-count {
     margin-right: 1rem;
+    gap: 0.75rem;
   }
-  main.events-section section.events-dashboard div.event-card-container figure.event-card div.card-panel div.rsvpdata h4 i {
-    color: var(--accent-col);
+  main.events-section section.events-dashboard div.event-card-container figure.event-card div.card-panel div.rsvpdata div.rsvp-count i {
+    color: #17e48b;
+  }
+  main.events-section section.events-dashboard div.event-card-container figure.event-card div.card-panel div.rsvpdata div.rsvp-count i.fa-users span {
+    color: var(--space-cadet);
   }
   main.event-editor {
     position: relative;
@@ -294,11 +299,15 @@ main.events-section {
   main.events-section section.events-dashboard div.event-card-container figure.event-card div.card-panel div.rsvpdata button i {
     margin: 0rem 0.05rem 0rem 0.25rem;
   }
-  main.events-section section.events-dashboard div.event-card-container figure.event-card div.card-panel div.rsvpdata h4 {
+  main.events-section section.events-dashboard div.event-card-container figure.event-card div.card-panel div.rsvpdata div.rsvp-count {
     margin-right: 1rem;
+    gap: 0.75rem;
   }
-  main.events-section section.events-dashboard div.event-card-container figure.event-card div.card-panel div.rsvpdata h4 i {
-    color: var(--accent-col);
+  main.events-section section.events-dashboard div.event-card-container figure.event-card div.card-panel div.rsvpdata div.rsvp-count i {
+    color: #17e48b;
+  }
+  main.events-section section.events-dashboard div.event-card-container figure.event-card div.card-panel div.rsvpdata div.rsvp-count i.fa-users span {
+    color: var(--space-cadet);
   }
   main.event-editor div.page-title {
     flex-direction: column;

@@ -22,7 +22,7 @@ class DataService {
 
   async getResponses(eventId) {
     const response = await axios.get(
-      this.serverURL + `/api/eventRSVP/${eventId}/`
+      this.serverURL + `/api/eventRSVP/${eventId}/rsvp/`
     );
 
     return response.data;
