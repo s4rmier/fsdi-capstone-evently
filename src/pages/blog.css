@@ -1,0 +1,101 @@
+@media screen and (min-width: 960px) {
+  main#blog div.page-title {
+    width: 100%;
+    padding-bottom: 1rem;
+    border-bottom: 0.0125rem solid var(--space-cadet);
+    justify-content: space-between;
+  }
+  main#blog div.blog-body {
+    padding: 2rem;
+    gap: 2rem;
+  }
+  main#blog div.blog-body figure {
+    width: 100%;
+  }
+  main#blog div.blog-body figure img {
+    border-radius: 20px;
+  }
+  main#blog div.blog-body figure figcaption {
+    margin: 1rem 0rem;
+  }
+  main#blog div.blog-body figure figcaption div.post-author {
+    gap: 0.5rem;
+  }
+  main#blog div.blog-body figure figcaption div.post-author p {
+    opacity: 0.5;
+    font-size: 0.75rem;
+  }
+  main#blog div.blog-body figure figcaption div.post-author h4.post-category {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-family: var(--heading-type);
+    font-weight: 600;
+    letter-spacing: 1px;
+    width: -moz-min-content;
+    width: min-content;
+  }
+  main#blog div.blog-body figure figcaption div.post-author div.blog-author {
+    margin: 0.25rem 1rem;
+  }
+  main#blog div.blog-body div.col1 {
+    width: 65%;
+  }
+  main#blog div.blog-body div.col1 figure.featured-post figcaption h4.post-category {
+    background-color: var(--celadon);
+  }
+  main#blog div.blog-body div.col2 {
+    width: 25%;
+  }
+  main#blog div.blog-body div.col2 figure.stories-post img {
+    display: none;
+  }
+  main#blog div.blog-body div.col2 figure.stories-post figcaption h4.post-category {
+    background-color: var(--flax);
+  }
+  main#blog div.blog-listings {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  main#blog div.blog-listings figure {
+    width: 400px;
+  }
+  main#blog div.blog-listings figure img {
+    height: 240px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    border-radius: 20px;
+  }
+  main#blog div.blog-listings figure figcaption {
+    margin: 1rem 0rem;
+  }
+  main#blog div.blog-listings figure figcaption div.post-author {
+    gap: 0.5rem;
+  }
+  main#blog div.blog-listings figure figcaption div.post-author p {
+    opacity: 0.5;
+    font-size: 0.75rem;
+  }
+  main#blog div.blog-listings figure figcaption div.post-author h4.post-category {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+    background: var(--apricot);
+    text-transform: uppercase;
+    font-family: var(--heading-type);
+    font-weight: 600;
+    letter-spacing: 1px;
+    width: -moz-min-content;
+    width: min-content;
+  }
+  main#blog div.blog-listings figure figcaption div.post-author div.blog-author {
+    margin: 0.25rem 1rem;
+  }
+  main#blog div.blog-listings figure.ideas-post figcaption div.post-author h4.post-category {
+    background-color: var(--photo-blue);
+  }
+}/*# sourceMappingURL=blog.css.map */

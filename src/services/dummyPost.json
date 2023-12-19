@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "title": "Top 10 Event Planning Mistakes and How to Avoid Them",
+    "category": "tips",
+    "postdate": "2023-12-28",
+    "author": "Michael Brown",
+    "subheading": "Learn about common event planning blunders and expert advice on how to steer clear of them.",
+    "coverimg": "https://images.pexels.com/photos/212286/pexels-photo-212286.jpeg",
+    "body": "This article outlines the top ten mistakes made in event planning and provides practical solutions to avoid them. From underestimating budgets to neglecting contingency plans, gain insights into proactive planning and how to ensure your event runs smoothly."
+  },
+  {
+    "id": 2,
+    "title": "Effective Budget Management for Your Next Event",
+    "category": "tips",
+    "postdate": "2023-12-30",
+    "author": "Rachel Green",
+    "subheading": "Practical tips for managing your event’s budget effectively, including cost-saving strategies and financial planning advice.",
+    "coverimg": "https://images.pexels.com/photos/53621/calculator-calculation-insurance-finance-53621.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "body": "Discover key strategies for effective budget management in event planning. Learn how to allocate funds wisely, identify potential cost-saving areas, and manage finances to deliver a successful event without overspending."
+  },
+  {
+    "id": 3,
+    "title": "Maximizing Attendee Engagement: Strategies for Event Planners",
+    "category": "tips",
+    "postdate": "2024-01-02",
+    "author": "David Lee",
+    "subheading": "Innovative methods and best practices to keep your audience engaged and make your event unforgettable.",
+    "coverimg": "https://images.pexels.com/photos/1157557/pexels-photo-1157557.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "body": "Unveil the secrets to maximizing attendee engagement at your events. This article covers innovative engagement strategies, from interactive technology to personalized experiences, ensuring your guests are actively involved and captivated throughout the event."
+  },
+  {
+    "id": 5,
+    "title": "Eco-Friendly Event Ideas for the Conscious Planner",
+    "category": "ideas",
+    "postdate": "2024-01-10",
+    "author": "Alex Torres",
+    "subheading": "Sustainable and green event planning ideas that are both eco-friendly and stylish.",
+    "coverimg": "https://images.pexels.com/photos/3850512/pexels-photo-3850512.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "body": "This article provides a guide to organizing eco-friendly events. Learn how to incorporate sustainable practices from venue selection to waste management, making your event not only successful but also kind to the environment."
+  },
+  {
+    "id": 6,
+    "title": "Tech Trends in Event Management: Ideas to Elevate Your Next Event",
+    "category": "ideas",
+    "postdate": "2024-01-15",
+    "author": "Samantha Kim",
+    "subheading": "A look at cutting-edge technology trends that can revolutionize event management and attendee experience.",
+    "coverimg": "https://images.pexels.com/photos/919734/pexels-photo-919734.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "body": "Stay ahead in event planning with the latest tech trends. From virtual reality experiences to AI-driven analytics, this article explores how technology can enhance event planning and create more dynamic, engaging events."
+  },
+  {
+    "id": 7,
+    "title": "Unique Entertainment Ideas for Memorable Events",
+    "category": "ideas",
+    "postdate": "2024-01-20",
+    "author": "Kevin Brooks",
+    "subheading": "A variety of exciting and unique entertainment options to add an unforgettable touch to your events.",
+    "coverimg": "https://images.pexels.com/photos/442540/pexels-photo-442540.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "body": "Transform your event with unique entertainment ideas that will leave a lasting impression. Whether it’s interactive performances or innovative showpieces, discover a range of options to elevate the entertainment value of your events."
+  },
+  {
+    "id": 8,
+    "title": "Behind the Scenes: The Making of a Dream Wedding",
+    "category": "stories",
+    "postdate": "2023-12-20",
+    "author": "Emily Johnson",
+    "subheading": "Discover the intricate planning and unexpected challenges behind creating a picture-perfect wedding day.",
+    "coverimg": "[Insert Image URL]",
+    "body": "Explore the journey of a wedding planner as they navigate through the complexities of orchestrating a dream wedding. From choosing the perfect venue to managing last-minute changes, this story dives into the details that make each wedding unique. Learn how challenges are overcome with creativity and meticulous planning, providing insights into the world of high-stakes event planning."
+  },
+  {
+    "id": 9,
+    "title": "Corporate Event Success: A Case Study",
+    "category": "stories",
+    "postdate": "2023-12-22",
+    "author": "John Carter",
+    "subheading": "Explore the strategy and execution of a large-scale corporate event, showcasing the journey from concept to successful completion.",
+    "coverimg": "[Insert Image URL]",
+    "body": "Delve into a case study of a major corporate event, illustrating the planning process, logistical challenges, and innovative solutions. This behind-the-scenes look offers valuable lessons on teamwork, precision, and the art of creating memorable corporate experiences that align with business objectives."
+  },
+  {
+    "id": 10,
+    "title": "Charity Gala Tales: Making a Difference Through Events",
+    "category": "stories",
+    "postdate": "2023-12-25",
+    "author": "Laura Smith",
+    "subheading": "A heartwarming recount of how a charity gala was organized, focusing on the positive impact and community engagement.",
+    "coverimg": "[Insert Image URL]",
+    "body": "Read about the inspiring story of organizing a charity gala, from brainstorming themes to executing a successful event. This tale highlights the importance of community, the power of events to support a cause, and the joy of bringing people together for a greater good."
+  },
+  {
+    "id": 11,
+    "title": "Navigating Event Vendor Contracts: Tips for Success",
+    "category": "featured",
+    "postdate": "2024-01-28",
+    "author": "Olivia Sanchez",
+    "subheading": "Expert advice on understanding and negotiating event vendor contracts to ensure a smooth event.",
+    "coverimg": "https://images.pexels.com/photos/210642/pexels-photo-210642.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "body": "This article delves into the essentials of event vendor contracts. Learn the key elements to look out for, negotiation tactics, and how to safeguard your event against potential issues. Gain the knowledge to work confidently with vendors and secure the best deals."
+  }
+]

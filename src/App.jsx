@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Events from "./pages/Events";
+import Blog from "./pages/Blog";
 import EventEditor from "./pages/EventEditor";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -28,6 +29,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/blog" element={<Blog />} />
+
             <Route path="/events/new" element={<EventEditor />} />
             <Route path="/events/editor/:eventId" element={<EventEditor />} />
             <Route
