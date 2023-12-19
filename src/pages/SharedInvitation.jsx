@@ -96,6 +96,7 @@ function SharedInvitation() {
         modalOpen={loadingIsVisible}
         message={"Loading, please wait"}
       />
+
       <EventInvitation {...eventData} />
     </div>
   );

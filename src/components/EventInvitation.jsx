@@ -36,16 +36,6 @@ function EventInvitation({
 
   const { successLoading, errorLoading } = useContext(DataContext);
 
-  const responseDiv = (
-    <div className="flex-col align justify responseDiv">
-      <h2 className="main-headline">
-        Thank you, {RSVPData.name || "Anonymous Guest"}! We received your
-        response.
-      </h2>
-      <h3>We'll see you soon!</h3>
-    </div>
-  );
-
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     const parsedDate = new Date(dateString);
@@ -87,7 +77,6 @@ function EventInvitation({
       setLoadingIsVisible(true);
       if (response.status === 201) {
         successLoading("Response received!");
-        clearForm();
         setLoadingIsVisible(false);
         setHasResponded(true);
       }
@@ -154,10 +143,18 @@ function EventInvitation({
       </div>
 
       {hasResponded ? (
-        responseDiv
+        <div className="flex-col align justify responseDiv">
+          <h2 className="main-headline">
+            Thank you, {RSVPData.name || "Anonymous Guest"}! We received your
+            response.
+          </h2>
+          <h3>We'll see you soon!</h3>
+        </div>
       ) : (
         <div className="event-rsvp container flex-col">
-          <h1 className="main-headline">Let us know you're coming</h1>
+          <h1 className="main-headline">
+            Let us know you're coming {RSVPData.name}
+          </h1>
           <form action="" className="flex-col">
             <div className="flex-row align">
               <label htmlFor="">Name : </label>
