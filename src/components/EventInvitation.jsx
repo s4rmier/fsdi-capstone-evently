@@ -152,9 +152,7 @@ function EventInvitation({
         </div>
       ) : (
         <div className="event-rsvp container flex-col">
-          <h1 className="main-headline">
-            Let us know you're coming {RSVPData.name}
-          </h1>
+          <h1 className="main-headline">Let us know you're coming</h1>
           <form action="" className="flex-col">
             <div className="flex-row align">
               <label htmlFor="">Name : </label>
